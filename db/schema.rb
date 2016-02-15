@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215175453) do
+ActiveRecord::Schema.define(version: 20160215182528) do
 
   create_table "agreements", force: :cascade do |t|
     t.integer  "code"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20160215175453) do
     t.text     "comment"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "valuations", force: :cascade do |t|
+    t.integer  "code"
+    t.date     "val_date"
+    t.decimal  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

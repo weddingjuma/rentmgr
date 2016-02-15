@@ -1,0 +1,2 @@
+class ValuationsController < ApplicationController
+end

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215142852) do
+ActiveRecord::Schema.define(version: 20160215174702) do
+
+  create_table "agreements", force: :cascade do |t|
+    t.integer  "code"
+    t.date     "sign_date"
+    t.date     "due_date"
+    t.boolean  "archived"
+    t.integer  "interest"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tenants", force: :cascade do |t|
     t.string   "type"

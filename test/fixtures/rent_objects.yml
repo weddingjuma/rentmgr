@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: 1
+  area: 9.99
+  function: MyText
+  comment: MyText
+  house_number: MyString
+
+two:
+  code: 1
+  area: 9.99
+  function: MyText
+  comment: MyText
+  house_number: MyString

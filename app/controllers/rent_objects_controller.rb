@@ -1,0 +1,2 @@
+class RentObjectsController < ApplicationController
+end

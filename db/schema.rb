@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215194314) do
+ActiveRecord::Schema.define(version: 20160229133404) do
 
   create_table "agreements", force: :cascade do |t|
     t.integer  "code"
@@ -20,8 +20,18 @@ ActiveRecord::Schema.define(version: 20160215194314) do
     t.boolean  "archived"
     t.integer  "interest"
     t.text     "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "tenant_id"
+    t.integer  "rent_object_id"
+  end
+
+  add_index "agreements", ["rent_object_id"], name: "index_agreements_on_rent_object_id"
+  add_index "agreements", ["tenant_id"], name: "index_agreements_on_tenant_id"
+
+  create_table "agreements_sessions", id: false, force: :cascade do |t|
+    t.integer "agreement_id", null: false
+    t.integer "session_id",   null: false
   end
 
   create_table "rent_objects", force: :cascade do |t|
@@ -30,9 +40,14 @@ ActiveRecord::Schema.define(version: 20160215194314) do
     t.text     "function"
     t.text     "comment"
     t.string   "house_number"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "settlement_id"
+    t.integer  "street_id"
   end
+
+  add_index "rent_objects", ["settlement_id"], name: "index_rent_objects_on_settlement_id"
+  add_index "rent_objects", ["street_id"], name: "index_rent_objects_on_street_id"
 
   create_table "sessions", force: :cascade do |t|
     t.date     "s_date"
@@ -62,16 +77,24 @@ ActiveRecord::Schema.define(version: 20160215194314) do
     t.string   "house_number"
     t.integer  "apt_number"
     t.text     "comment"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "settlement_id"
+    t.integer  "street_id"
   end
+
+  add_index "tenants", ["settlement_id"], name: "index_tenants_on_settlement_id"
+  add_index "tenants", ["street_id"], name: "index_tenants_on_street_id"
 
   create_table "valuations", force: :cascade do |t|
     t.integer  "code"
     t.date     "val_date"
     t.decimal  "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "rent_object_id"
   end
+
+  add_index "valuations", ["rent_object_id"], name: "index_valuations_on_rent_object_id"
 
 end

@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20160215194314) do
   end
 
   create_table "tenants", force: :cascade do |t|
-    t.string   "type"
+    t.string   "kind"
     t.string   "name"
     t.integer  "code"
     t.string   "house_number"

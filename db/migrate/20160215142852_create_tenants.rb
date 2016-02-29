@@ -1,7 +1,7 @@
 class CreateTenants < ActiveRecord::Migration
   def change
     create_table :tenants do |t|
-      t.string :type
+      t.string :kind
       t.string :name
       t.integer :code
       t.string :house_number

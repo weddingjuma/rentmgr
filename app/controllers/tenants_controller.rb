@@ -21,6 +21,13 @@ class TenantsController < ApplicationController
   private
   def tenant_params
     params.require(:tenant)
-      .permit(:kind, :name, :code, :house_number, :apt_number, :comment)
+      .permit(:kind,
+              :name,
+              :code,
+              :house_number,
+              :apt_number,
+              :comment,
+              :settlement_id,
+              :street_id)
   end
 end

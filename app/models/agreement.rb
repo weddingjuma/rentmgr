@@ -5,4 +5,12 @@ class Agreement < ActiveRecord::Base
 
   has_many :updates, :class_name => "Agreement", :foreign_key => "original_id"
   belongs_to :original, :class_name => "Agreement"
+
+  validates :code, :sign_date, :due_date, :interest, :tenant, :rent_object, presence: true
+  validates :code, :numericality => { :only_integer => true }
+  validates :interest, numericality: { only_integer: true, less_than_or_equal_to: 100 }
+  validates :comment, :length => {
+    :maximum => 500,
+    :too_long => "Максимум 500 символів"
+  }
 end

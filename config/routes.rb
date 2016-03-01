@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   resources :rent_objects do
     resources :valuations
   end
-  namespace :service do
-    resources :sessions, :settlements, :streets
-  end
+  resources :sessions, :settlements, :streets
   root :to => redirect('/agreements')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -20,12 +20,14 @@ ActiveRecord::Schema.define(version: 20160229133404) do
     t.boolean  "archived"
     t.integer  "interest"
     t.text     "comment"
+    t.integer  "original_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "tenant_id"
     t.integer  "rent_object_id"
   end
 
+  add_index "agreements", ["original_id"], name: "index_agreements_on_original_id"
   add_index "agreements", ["rent_object_id"], name: "index_agreements_on_rent_object_id"
   add_index "agreements", ["tenant_id"], name: "index_agreements_on_tenant_id"
 

@@ -8,6 +8,8 @@ class CreateAgreements < ActiveRecord::Migration
       t.integer :interest
       t.text :comment
 
+      t.references :original, :index => true
+
       t.timestamps null: false
     end
   end

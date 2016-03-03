@@ -1,0 +1,20 @@
+%table.table.table-striped
+  %thead
+    %tr
+      %th
+        %b Номер
+      %th
+        %b Дата проведення
+      %th
+        %b Вартість
+      %th
+  %tbody
+    - @valuations.each do |v|
+      -# - if params[:controller] == 'agreements'
+      %tr{class: (('success' if @agreement.relevant_valuation == v) if params[:controller] == 'agreements')}
+        %td= v.code
+        %td= v.val_date
+        %td= v.value
+        %td
+          = link_to 'Переглянути', [v.rent_object, v]
+          = link_to 'Редагувати', edit_rent_object_valuation_path(v.rent_object, v)

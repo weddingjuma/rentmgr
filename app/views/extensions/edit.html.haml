@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      = "Редагування договору про внесення змін" if @extension.change?
+      = "Редагування додаткової угоди" if @extension.addition?
+  .panel-body
+    = render 'form'

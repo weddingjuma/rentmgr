@@ -1,0 +1,42 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      = link_to 'RentManager', agreements_path, :class => 'navbar-brand'
+    %ul.nav.navbar-nav
+      %li{:class => ('active' if params[:controller] == 'agreements')}
+        %a.dropdown-toggle{'data-toggle': 'dropdown', role: 'button'}
+          Договори
+          %span.caret
+        %ul.dropdown-menu
+          %li= link_to 'Переглянути всі', agreements_path
+          %li= link_to 'Новий договір', new_agreement_path
+      %li{class: [('active' if params[:controller] == 'tenants'), 'dropdown']}
+        %a.dropdown-toggle{'data-toggle': 'dropdown', role: 'button'}
+          Орендарі
+          %span.caret
+        %ul.dropdown-menu
+          %li= link_to 'Переглянути всі', tenants_path
+          %li= link_to 'Новий орендар', new_tenant_path
+      %li{class: ('active' if params[:controller] == 'rent_objects')}
+        %a.dropdown-toggle{'data-toggle': 'dropdown', role: 'button'}
+          Об'єкти
+          %span.caret
+          %ul.dropdown-menu
+            %li= link_to 'Переглянути всі', rent_objects_path
+            %li= link_to 'Новий об\'єкт', new_rent_object_path
+      %li{class: ('active' if params[:controller] == 'sessions')}
+        %a.dropdown-toggle{'data-toggle': 'dropdown', role: 'button'}
+          Сесії
+          %span.caret
+          %ul.dropdown-menu
+            %li= link_to 'Переглянути всі', sessions_path
+            %li= link_to 'Нове сесія', new_session_path
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %a.dropdown-toggle{'data-toggle': 'dropdown', role: 'button'}
+          Додатково (Сервіс)
+          %span.caret
+        %ul.dropdown-menu
+          %li= link_to 'Вулиці', streets_path
+          %li= link_to 'Населені пункти', settlements_path
+          %li= link_to 'Вихід'

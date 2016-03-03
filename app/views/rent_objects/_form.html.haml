@@ -1,0 +1,9 @@
+= simple_form_for @rent_object do |f|
+  = f.input :code, label: 'Номер'
+  = f.input :area, label: 'Площа'
+  = f.input :function, label: 'Призначення'
+  = f.association :settlement, :label => 'Населений пункт'
+  = f.association :street, :label => 'Вулиця'
+  = f.input :house_number, :label => 'Номер будинку'
+  = f.input :comment, :label => 'Коментар'
+  = f.button :submit, 'Зберегти'

@@ -1,0 +1,16 @@
+.panel.panel-default
+  .panel-heading.clearfix
+    %h3.panel-title.pull-left Орендар
+    .btn-group{role: "group", class: "pull-right"}
+      = link_to 'Редагувати', edit_tenant_path(@tenant),
+        class: %w(btn btn-default)
+      = link_to 'Видалити', tenant_path(@tenant),
+        method: :delete,
+        data: {confirm: 'Видалити запис орендаря?'},
+        class: %w(btn btn-danger)
+  .panel-body
+    = render 'show_table'
+.panel.panel-default
+  .panel-heading.panel-title Договори
+  .panel-body
+    = render 'agreements/list_table_short', :@agreements => @tenant.agreements

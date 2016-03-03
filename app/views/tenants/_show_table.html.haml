@@ -1,0 +1,25 @@
+%table.table
+  %tr
+    %td Тип
+    %td= @tenant.category
+  %tr
+    %td Назва
+    %td= @tenant.name
+  %tr
+    %td Код
+    %td= @tenant.code
+  %tr
+    %td Вулиця
+    %td= @tenant.street.name
+  %tr
+    %td Населений пункт
+    %td= @tenant.settlement.name
+  %tr
+    %td Номер будинку
+    %td= @tenant.house_number
+  %tr
+    %td Номер квартири
+    %td= @tenant.apt_number
+  %tr
+    %td Коментар
+    %td= @tenant.comment

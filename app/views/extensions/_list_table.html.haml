@@ -1,0 +1,35 @@
+%table.table
+  %thead
+    %tr
+      %th
+      %th
+        %b Номер
+      %th
+        %b Дата підписання
+      %th
+        %b Дійсний до
+      %th
+        %b Орендна плата (%)
+      %th
+        %b Архів
+      %th
+  %tbody
+    - @extensions.each do |e|
+      %tr
+        %td
+          - if e.addition?
+            %span.glyphicon.glyphicon-plus
+          - if e.change?
+            %span.glyphicon.glyphicon-pencil
+        %td= e.code
+        %td= e.sign_date
+        %td= e.due_date
+        %td= e.interest
+        %td= e.archived
+        %td
+          = link_to '',
+            agreement_extension_path(e.agreement, e),
+            class: 'glyphicon glyphicon-eye-open'
+          = link_to '',
+            edit_agreement_extension_path(e.agreement, e),
+            class: 'glyphicon glyphicon-pencil'

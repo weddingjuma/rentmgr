@@ -1,0 +1,30 @@
+= simple_form_for @agreement do |f|
+  = f.input :easement, label: 'Сервітут'
+  = f.input :code, label: 'Номер'
+  = f.input :sign_date,
+            label: 'Дата підписання',
+            start_year: Date.today.year - 20,
+            end_year: Date.today.year + 50
+  = f.input :due_date,
+            label: 'Дійсний до',
+            start_year: Date.today.year - 20,
+            end_year: Date.today.year + 50
+  = f.input :interest, label: 'Орендна плата (%)'
+  = f.association :tenant, label: 'Орендар'
+  -# HACK (DRY)
+  - if @agreement.rent_object
+    = f.association :rent_object,
+                    label: 'Об’єкт оренди',
+                    collection: RentObject.where(rented: false) << @agreement.rent_object,
+                    label_method: lambda { |ro| "#{ro.code} / #{ro.area} га. / #{ro.function}"}
+  - else
+    = f.association :rent_object,
+                    label: 'Об’єкт оренди',
+                    collection: RentObject.where(rented: false),
+                    label_method: lambda { |ro| "#{ro.code} / #{ro.area} га. / #{ro.function}"}
+  = f.association :sessions,
+                  label: 'Сесії',
+                  label_method: lambda { |s| "#{s.s_date} / #{s.code}" }
+  = f.input :comment, label: 'Коментар'
+  = f.input :archived, label: 'Архів'
+  = f.button :submit, 'Зберегти'

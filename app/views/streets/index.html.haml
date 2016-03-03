@@ -1,0 +1,19 @@
+= link_to 'Додати вулицю',
+  new_street_path(@street),
+  class: %w(btn btn-default)
+%table.table
+  %thead
+    %tr
+      %th
+        %b Назва
+      %th
+        %b Тип
+      %th
+  %tbody
+    - @streets.each do |s|
+      %tr
+        %td= s.name
+        %td= s.kind
+        %td
+          =link_to 'Редагувати', edit_street_path(s)
+          =link_to 'Видалити', street_path(s), method: :delete

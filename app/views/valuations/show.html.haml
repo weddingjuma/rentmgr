@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-heading.clearfix
+    %h3.panel-title.pull-left
+      Грошова оцінка №
+      = @valuation.code
+    .btn-group{role: "group", class: "pull-right"}
+      = link_to 'Редагувати', edit_rent_object_valuation_path(@valuation.rent_object, @valuation),
+        class: %w(btn btn-default)
+      = link_to 'Видалити', rent_object_valuation_path(@valuation.rent_object, @valuation),
+        method: :delete,
+        data: {confirm: 'Видалити грошову оцінку?'},
+        class: %w(btn btn-danger)
+  .panel-body
+    = render 'show_table'

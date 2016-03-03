@@ -1,0 +1,10 @@
+= simple_form_for @tenant do |f|
+  = f.input :category, :label => 'Форма'
+  = f.input :name, :label => 'Назва'
+  = f.input :code, :label => 'Код'
+  = f.association :settlement, :label => 'Населений пункт'
+  = f.association :street, :label => 'Вулиця'
+  = f.input :house_number, :label => 'Номер будинку'
+  = f.input :apt_number, :label => 'Номер квартири'
+  = f.input :comment, :label => 'Коментар'
+  = f.button :submit, 'Зберегти'

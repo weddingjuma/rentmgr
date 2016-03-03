@@ -1,0 +1,16 @@
+%table.table
+  %thead
+    %tr
+      %th
+        %b Номер
+      %th
+        %b Дата
+      %th
+  %tbody
+    - @sessions.each do |s|
+      %tr
+        %td= s.code
+        %td= s.s_date
+        %td
+          = link_to 'Переглянути', session_path(s)
+          = link_to 'Редагувати', edit_session_path(s)

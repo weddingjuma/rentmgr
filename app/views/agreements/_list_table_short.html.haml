@@ -1,0 +1,23 @@
+%table.table
+  %thead
+    %tr
+      %th
+        %b Номер
+      %th
+        %b Дійсний до
+      %th
+        %b Орендар
+      %th
+        %b Орендна плата (%)
+      %th
+        %b Архів
+      %th
+  %tbody
+    - @agreements.each do |a|
+      %tr
+        %td= a.code
+        %td= a.due_date
+        %td= a.tenant.name
+        %td= a.interest
+        %td= a.archived
+        %td= link_to '', agreement_path(a), class: 'glyphicon glyphicon-eye-open'

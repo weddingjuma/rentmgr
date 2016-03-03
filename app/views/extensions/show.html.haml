@@ -1,0 +1,30 @@
+.panel.panel-default
+  .panel-heading.clearfix
+    %h3.panel-title.pull-left
+      = "Договір про внесення змін № #{@extension.code}" if @extension.change?
+      = "Додаткова угода № #{@extension.code}" if @extension.addition?
+    .btn-group{role: "group", class: "pull-right"}
+      = link_to 'Редагувати', edit_agreement_extension_path(@agreement, @extension),
+        class: %w(btn btn-default)
+      = link_to 'Видалити', agreement_extension_path(@agreement, @extension),
+        method: :delete,
+        data: {confirm: 'Видалити документ?'},
+        class: %w(btn btn-danger)
+  .panel-body
+    -# = render 'show_table'
+    %table.table.table-striped
+      %tr
+        %td Код
+        %td= @extension.code
+      %tr
+        %td Дата підписання
+        %td= @extension.sign_date
+      %tr
+        %td Дійсний до
+        %td= @extension.due_date
+      %tr
+        %td Орендна плата (%)
+        %td= @extension.interest
+      %tr
+        %td Коментар
+        %td= @extension.comment

@@ -1,0 +1,51 @@
+%table.table
+  %thead
+    %tr
+      %th
+      %th
+        %b Сервітут
+      %th
+        %b Номер
+      %th
+        %b Дійсний до
+      %th
+        %b Орендар
+      %th
+        %b Орендна плата (%)
+      %th
+        %b Об’єкт оренди
+      %th
+        %b Архів
+      %th
+        %b Днів залишилось
+      %th
+  %tbody
+    - @agreements.each do |a|
+      %tr{class: ('warning' if a.days_left <= 30 && a.days_left >=1) || ('danger' if a.days_left <= 0)}
+        %td
+          %span.glyphicon.glyphicon-file
+        %td= a.easement
+        %td= a.code
+        %td= a.due_date
+        %td= link_to a.tenant.name, tenant_path(a.tenant)
+        %td= a.interest
+        %td= link_to "#{a.rent_object.code} / #{a.rent_object.area} га.", rent_object_path(a.rent_object)
+        %td= a.archived
+        %td= a.days_left
+        %td= link_to '', agreement_path(a), class: 'glyphicon glyphicon-eye-open'
+      - a.extensions.each do |e|
+        %tr
+          %td
+            - if e.addition?
+              %span.glyphicon.glyphicon-plus
+            - if e.change?
+              %span.glyphicon.glyphicon-pencil
+          %td
+          %td= e.code
+          %td= e.due_date
+          %td
+          %td= e.interest
+          %td
+          %td= e.archived
+          %td
+          %td

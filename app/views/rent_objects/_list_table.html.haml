@@ -1,0 +1,17 @@
+%table.table
+  %thead
+    %tr
+      %th
+        %b Номер
+      %th
+        %b Площа
+      %th
+        %b Призначення
+      %th
+  %tbody
+    - @rent_objects.each do |o|
+      %tr
+        %td= o.code
+        %td= o.area
+        %td= o.function
+        %td= link_to 'Переглянути', rent_object_path(o)

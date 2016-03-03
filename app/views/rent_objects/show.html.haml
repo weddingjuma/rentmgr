@@ -1,0 +1,27 @@
+.panel.panel-default
+  .panel-heading.clearfix
+    %h3.panel-title.pull-left Об’єкт оренди
+    .btn-group{role: "group", class: "pull-right"}
+      = link_to 'Редагувати', edit_rent_object_path(@rent_object),
+        class: %w(btn btn-default)
+      = link_to 'Нова грошова оцінка',
+        new_rent_object_valuation_path(@rent_object),
+        class: %w(btn btn-default)
+      = link_to 'Видалити', rent_object_path(@rent_object),
+        method: :delete,
+        data: {confirm: 'Видалити об’єкт оренди і його грошові оцінки?'},
+        class: %w(btn btn-danger)
+  .panel-body
+    =render 'show_table'
+- if @rent_object.valuations.any?
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Грошові оцінки
+    .panel-body
+      = render 'valuations/list_table', :@valuations => @rent_object.valuations
+- if @rent_object.agreements.any?
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Договори
+    .panel-body
+      =render 'agreements/list_table_short', :@agreements => @rent_object.agreements

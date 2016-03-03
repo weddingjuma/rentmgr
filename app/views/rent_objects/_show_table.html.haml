@@ -1,0 +1,29 @@
+%table.table.table-striped
+  %tr
+    %td
+      %b Код
+    %td= @rent_object.code
+  %tr
+    %td
+      %b Площа
+    %td= @rent_object.area
+  %tr
+    %td
+      %b Призначення
+    %td= @rent_object.function
+  %tr
+    %td
+      %b Населений пункт
+    %td= @rent_object.settlement.name
+  %tr
+    %td
+      %b Вулиця
+    %td= @rent_object.street.name
+  %tr
+    %td
+      %b Номер будинку
+    %td= @rent_object.house_number
+  %tr
+    %td
+      %b Коментар
+    %td= @rent_object.comment

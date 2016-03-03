@@ -1,0 +1,17 @@
+%table.table.table-striped
+  %tr
+    %td
+      %b Код
+    %td= @valuation.code
+  %tr
+    %td
+      %b Дата проведення оцінки
+    %td= @valuation.val_date
+  %tr
+    %td
+      %b Вартість
+    %td= @valuation.value
+  %tr
+    %td
+      %b Об’єкт оренди №
+    %td= link_to @valuation.rent_object.code, @rent_object

@@ -11,23 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229133404) do
+ActiveRecord::Schema.define(version: 20160302091945) do
 
   create_table "agreements", force: :cascade do |t|
     t.integer  "code"
     t.date     "sign_date"
     t.date     "due_date"
+    t.boolean  "easement"
     t.boolean  "archived"
     t.integer  "interest"
     t.text     "comment"
-    t.integer  "original_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "tenant_id"
     t.integer  "rent_object_id"
   end
 
-  add_index "agreements", ["original_id"], name: "index_agreements_on_original_id"
   add_index "agreements", ["rent_object_id"], name: "index_agreements_on_rent_object_id"
   add_index "agreements", ["tenant_id"], name: "index_agreements_on_tenant_id"
 
@@ -42,8 +41,9 @@ ActiveRecord::Schema.define(version: 20160229133404) do
     t.text     "function"
     t.text     "comment"
     t.string   "house_number"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.boolean  "rented",        default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "settlement_id"
     t.integer  "street_id"
   end
@@ -73,14 +73,14 @@ ActiveRecord::Schema.define(version: 20160229133404) do
   end
 
   create_table "tenants", force: :cascade do |t|
-    t.string   "kind"
+    t.integer  "category"
     t.string   "name"
-    t.integer  "code"
+    t.integer  "code",          limit: 8
     t.string   "house_number"
     t.integer  "apt_number"
     t.text     "comment"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "settlement_id"
     t.integer  "street_id"
   end

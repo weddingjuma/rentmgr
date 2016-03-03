@@ -4,11 +4,10 @@ class CreateAgreements < ActiveRecord::Migration
       t.integer :code
       t.date :sign_date
       t.date :due_date
+      t.boolean :easement
       t.boolean :archived
       t.integer :interest
       t.text :comment
-
-      t.references :original, :index => true
 
       t.timestamps null: false
     end

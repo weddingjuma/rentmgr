@@ -6,6 +6,7 @@ class CreateRentObjects < ActiveRecord::Migration
       t.text :function
       t.text :comment
       t.string :house_number
+      t.boolean :rented, default: false
 
       t.timestamps null: false
     end

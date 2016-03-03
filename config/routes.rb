@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  resources :tenants, :agreements
+  resources :tenants, :sessions
+  resources :settlements, :streets, except: :show
+  resources :agreements do
+    resources :extensions, except: :index
+  end
   resources :rent_objects do
     resources :valuations
   end
-  resources :sessions, :settlements, :streets
   root :to => redirect('/agreements')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

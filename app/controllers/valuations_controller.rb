@@ -4,13 +4,19 @@ class ValuationsController < ApplicationController
   end
 
   def show
-    @rent_object = RentObject.find(params[:rent_object_id])
     @valuation = Valuation.find(params[:id])
+    @rent_object = @valuation.rent_object
+  end
+
+  def edit
+    @valuation = Valuation.find(params[:id])
+    @rent_object = @valuation.rent_object
   end
 
   def new
     @rent_object = RentObject.find(params[:rent_object_id])
     @valuation = Valuation.new
+    # @valuation.rent_object = @rent_object
   end
 
   def create
@@ -18,8 +24,30 @@ class ValuationsController < ApplicationController
     @valuation = Valuation.new(valuation_params)
     @valuation.rent_object = @rent_object
 
-    @valuation.save
-    redirect_to [@rent_object, @valuation]
+    if @valuation.save
+      redirect_to @rent_object
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @valuation = Valuation.find(params[:id])
+
+    if @valuation.update(valuation_params)
+      redirect_to rent_object_path(@valuation.rent_object)
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @valuation = Valuation.find(params[:id])
+    rent_object = @valuation.rent_object
+
+    @valuation.destroy
+
+    redirect_to rent_object_path(rent_object)
   end
 
   private

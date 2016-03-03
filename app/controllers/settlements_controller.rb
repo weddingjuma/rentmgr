@@ -3,6 +3,10 @@ class SettlementsController < ApplicationController
     @settlements = Settlement.all
   end
 
+  def edit
+    @settlement = Settlement.find(params[:id])
+  end
+
   def new
     @settlement = Settlement.new
   end
@@ -10,7 +14,27 @@ class SettlementsController < ApplicationController
   def create
     @settlement = Settlement.new(settlement_params)
 
-    @settlement.save
+    if @settlement.save
+      redirect_to settlements_path
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @settlement = Settlement.find(params[:id])
+
+    if @settlement.update(settlement_params)
+      redirect_to settlements_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @settlement = Settlement.find(params[:id])
+    @settlement.destroy
+
     redirect_to settlements_path
   end
 

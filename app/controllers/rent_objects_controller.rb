@@ -7,6 +7,10 @@ class RentObjectsController < ApplicationController
     @rent_object = RentObject.find(params[:id])
   end
 
+  def edit
+    @rent_object = RentObject.find(params[:id])
+  end
+
   def new
     @rent_object = RentObject.new
   end
@@ -14,8 +18,28 @@ class RentObjectsController < ApplicationController
   def create
     @rent_object = RentObject.new(rent_object_params)
 
-    @rent_object.save
-    redirect_to @rent_object
+    if @rent_object.save
+      redirect_to @rent_object
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @rent_object = RentObject.find(params[:id])
+
+    if @rent_object.update(rent_object_params)
+      redirect_to @rent_object
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @rent_object = RentObject.find(params[:id])
+    @rent_object.destroy
+
+    redirect_to rent_objects_path
   end
 
   private

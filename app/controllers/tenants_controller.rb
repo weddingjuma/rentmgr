@@ -7,6 +7,10 @@ class TenantsController < ApplicationController
     @tenant = Tenant.find(params[:id])
   end
 
+  def edit
+    @tenant = Tenant.find(params[:id])
+  end
+
   def new
     @tenant = Tenant.new
   end
@@ -14,8 +18,28 @@ class TenantsController < ApplicationController
   def create
     @tenant = Tenant.new(tenant_params)
 
-    @tenant.save
-    redirect_to @tenant
+    if @tenant.save
+      redirect_to @tenant
+    else
+      render 'new'
+    end
+  end
+
+  def update
+    @tenant = Tenant.find(params[:id])
+
+    if @tenant.update(tenant_params)
+      redirect_to @tenant
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @tenant = Tenant.find(params[:id])
+    @tenant.destroy
+
+    redirect_to tenants_path
   end
 
   private

@@ -35,6 +35,26 @@ ActiveRecord::Schema.define(version: 20160302091945) do
     t.integer "session_id",   null: false
   end
 
+  create_table "extensions", force: :cascade do |t|
+    t.integer  "code",         limit: 8
+    t.date     "sign_date"
+    t.date     "due_date"
+    t.boolean  "archived"
+    t.integer  "interest"
+    t.text     "comment"
+    t.integer  "category"
+    t.integer  "agreement_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "extensions", ["agreement_id"], name: "index_extensions_on_agreement_id"
+
+  create_table "extensions_sessions", id: false, force: :cascade do |t|
+    t.integer "extension_id", null: false
+    t.integer "session_id",   null: false
+  end
+
   create_table "rent_objects", force: :cascade do |t|
     t.integer  "code"
     t.decimal  "area"

@@ -41,4 +41,28 @@ class RentObject < ActiveRecord::Base
       raise "Error. Multiple active agreements detected."
     end
   end
+
+  # Ensures getting of last valuation by date. No need to validate for
+  # insertion`s chronological order.
+  #
+  # If rent_object valuated (impossible?) on the same day twice or more,
+  # last valuation will be used
+  def recent_valuation
+    if self.valuations.any?
+      self.valuations.order(:val_date, :created_at).last
+    else
+      nil
+    end
+  end
+
+  def recent_valuation_up_to(to_date)
+    if self.valuations.any?
+      valuation = self.valuations
+        .where("val_date <= :to_date", {to_date: to_date})
+        .order(:val_date, :created_at)
+        .last
+    else
+      nil
+    end
+  end
 end

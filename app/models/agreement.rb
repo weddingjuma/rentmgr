@@ -39,4 +39,16 @@ class Agreement < ActiveRecord::Base
       nil
     end
   end
+
+  def relevant_due_date
+    if self.extensions.any?
+      self.recent_extension.due_date
+    else
+      self.due_date
+    end
+  end
+
+  def days_left
+    (self.relevant_due_date - Date.today).to_i
+  end
 end

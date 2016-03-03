@@ -1,2 +1,16 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+ textarea {
+  max-width: 100%;
+}
+.panel-heading h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: normal;
+  padding-top: 7px;
+}
+.panel-heading a:not(.btn) {
+  color: #337ab7
+}

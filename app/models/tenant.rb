@@ -1,7 +1,9 @@
 class Tenant < ActiveRecord::Base
+  enum category: %w(citizen fop pp other)
+
   belongs_to :settlement
   belongs_to :street
-  has_many :agreements
+  has_many :agreements, dependent: :destroy
   has_many :rent_objects, through: :agreements
 
   validates :name, :code, :settlement, :street, presence: true

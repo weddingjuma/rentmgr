@@ -13,4 +13,13 @@ class Agreement < ActiveRecord::Base
     maximum: 500,
     too_long: "Максимум 500 символів"
   }
+
+  after_destroy :touch_rent_object
+  after_create :touch_rent_object
+  after_save :touch_rent_object
+  after_update :touch_rent_object
+
+  def touch_rent_object
+    self.rent_object.touch
+  end
 end

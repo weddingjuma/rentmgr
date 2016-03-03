@@ -22,4 +22,21 @@ class Agreement < ActiveRecord::Base
   def touch_rent_object
     self.rent_object.touch
   end
+
+  def relevant_valuation
+    last_sign_date = self.sign_date
+
+    last_sign_date = self.recent_extension.sign_date if self.extensions.any?
+
+    self.rent_object.recent_valuation_up_to last_sign_date
+  end
+
+  # Ensures getting of last extension by date
+  def recent_extension
+    if self.extensions.any?
+      self.extensions.where(archived: false).order(:sign_date, :created_at).last
+    else
+      nil
+    end
+  end
 end

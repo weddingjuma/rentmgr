@@ -7,11 +7,17 @@
         %b Площа
       %th
         %b Призначення
-      %th
+      %th.controls-3
   %tbody
     - @rent_objects.each do |o|
       %tr
         %td= o.code
         %td= o.area
         %td= o.function
-        %td= link_to 'Переглянути', rent_object_path(o)
+        %td
+          .btn-group{role: "group"}
+            = link_to '', rent_object_path(o), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_rent_object_path(o), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', rent_object_path(o), method: :delete,
+              data: { confirm: 'Видалити запис об’єкту і його грошові оцінки?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

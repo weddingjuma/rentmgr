@@ -11,7 +11,7 @@
         %b Орендна плата (%)
       %th
         %b Архів
-      %th
+      %th.controls-3
   %tbody
     - @agreements.each do |a|
       %tr
@@ -20,4 +20,10 @@
         %td= a.tenant.name
         %td= a.interest
         %td= a.archived
-        %td= link_to '', agreement_path(a), class: 'glyphicon glyphicon-eye-open'
+        %td
+          .pull-right.btn-group{role: "group"}
+            = link_to '', agreement_path(a), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_agreement_path(a), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', agreement_path(a), method: :delete,
+              data: { confirm: 'Видалити запис договору?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

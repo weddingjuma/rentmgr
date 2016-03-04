@@ -7,7 +7,7 @@
         %b Дата проведення
       %th
         %b Вартість
-      %th
+      %th.controls-3
   %tbody
     - @valuations.each do |v|
       -# - if params[:controller] == 'agreements'
@@ -16,5 +16,9 @@
         %td= v.val_date
         %td= v.value
         %td
-          = link_to 'Переглянути', [v.rent_object, v]
-          = link_to 'Редагувати', edit_rent_object_valuation_path(v.rent_object, v)
+          .btn-group{role: "group"}
+            = link_to '', rent_object_valuation_path(v.rent_object, v), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_rent_object_valuation_path(v.rent_object, v), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', rent_object_valuation_path(v.rent_object, v), method: :delete,
+              data: { confirm: 'Видалити запис грошової оцінки?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

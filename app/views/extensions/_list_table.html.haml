@@ -12,7 +12,7 @@
         %b Орендна плата (%)
       %th
         %b Архів
-      %th
+      %th.controls-3
   %tbody
     - @extensions.each do |e|
       %tr
@@ -27,9 +27,9 @@
         %td= e.interest
         %td= e.archived
         %td
-          = link_to '',
-            agreement_extension_path(e.agreement, e),
-            class: 'glyphicon glyphicon-eye-open'
-          = link_to '',
-            edit_agreement_extension_path(e.agreement, e),
-            class: 'glyphicon glyphicon-pencil'
+          .btn-group{role: "group"}
+            = link_to '', agreement_extension_path(e.agreement, e), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_agreement_extension_path(e.agreement, e), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', agreement_extension_path(e.agreement, e), method: :delete,
+              data: { confirm: 'Видалити запис оновлення?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

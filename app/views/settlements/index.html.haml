@@ -8,12 +8,15 @@
         %b Назва
       %th
         %b Тип
-      %th
+      %th.controls-2
   %tbody
     - @settlements.each do |s|
       %tr
         %td= s.name
         %td= s.kind
         %td
-          =link_to 'Редагувати', edit_settlement_path(s)
-          =link_to 'Видалити', settlement_path(s), method: :delete
+          .btn-group{role: "group"}
+            = link_to '', edit_settlement_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', settlement_path(s), method: :delete,
+              data: { confirm: 'Видалити запис населеного пункту?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

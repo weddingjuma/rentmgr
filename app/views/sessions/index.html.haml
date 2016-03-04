@@ -5,12 +5,16 @@
         %b Номер
       %th
         %b Дата
-      %th
+      %th.controls-3
   %tbody
     - @sessions.each do |s|
       %tr
         %td= s.code
         %td= s.s_date
         %td
-          = link_to 'Переглянути', session_path(s)
-          = link_to 'Редагувати', edit_session_path(s)
+          .btn-group{role: "group"}
+            = link_to '', session_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_session_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', session_path(s), method: :delete,
+              data: { confirm: 'Видалити запис сесії?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

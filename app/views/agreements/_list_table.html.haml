@@ -18,7 +18,7 @@
         %b Архів
       %th
         %b Днів залишилось
-      %th
+      %th.controls-3
   %tbody
     - @agreements.each do |a|
       %tr{class: ('warning' if a.days_left <= 30 && a.days_left >=1) || ('danger' if a.days_left <= 0)}
@@ -32,7 +32,13 @@
         %td= link_to "#{a.rent_object.code} / #{a.rent_object.area} га.", rent_object_path(a.rent_object)
         %td= a.archived
         %td= a.days_left
-        %td= link_to '', agreement_path(a), class: 'glyphicon glyphicon-eye-open'
+        %td
+          .btn-group{role: "group"}
+            = link_to '', agreement_path(a), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_agreement_path(a), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', agreement_path(a), method: :delete,
+              data: { confirm: 'Видалити запис договору?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'
       - a.extensions.each do |e|
         %tr
           %td
@@ -49,3 +55,6 @@
           %td= e.archived
           %td
           %td
+            .btn-group{role: "group"}
+              = link_to '', agreement_extension_path(a, e), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+              = link_to '', edit_agreement_extension_path(a, e), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'

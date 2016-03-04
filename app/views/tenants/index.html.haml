@@ -5,7 +5,7 @@
       %th Назва
       %th Код
       %th Адреса
-      %th
+      %th.controls-3
   %tbody
     - @tenants.each do |t|
       %tr
@@ -20,4 +20,9 @@
           - if !t.apt_number.blank?
             кв. #{t.apt_number}
         %td
-          = link_to '', tenant_path(t), class: 'glyphicon glyphicon-eye-open'
+          .btn-group{role: "group"}
+            = link_to '', tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+            = link_to '', edit_tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+            = link_to '', tenant_path(t), method: :delete,
+              data: { confirm: 'Видалити запис орендаря і його договори?' },
+              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

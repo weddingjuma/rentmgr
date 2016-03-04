@@ -11,7 +11,7 @@
       %th
         %b Орендар
       %th
-        %b Орендна плата (%)
+        %b Орендна плата
       %th
         %b Об’єкт оренди
       %th
@@ -29,7 +29,7 @@
         %td= a.code
         %td= a.due_date
         %td= link_to a.tenant.name, tenant_path(a.tenant)
-        %td= a.interest
+        %td= number_to_percentage(a.interest, precision: 0)
         %td= link_to "#{a.rent_object.code} / #{a.rent_object.area} га.", rent_object_path(a.rent_object)
         %td
           %span{class: boolean_to_glyph_class(a.archived)}
@@ -54,7 +54,7 @@
           %td= e.code
           %td= e.due_date
           %td
-          %td= e.interest
+          %td= number_to_percentage(e.interest, precision: 0)
           %td
           %td
             %span{class: boolean_to_glyph_class(e.archived)}

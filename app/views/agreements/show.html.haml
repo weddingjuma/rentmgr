@@ -27,8 +27,8 @@
         %td Дійсний до
         %td= @agreement.due_date
       %tr
-        %td Орендна плата (%)
-        %td= @agreement.interest
+        %td Орендна плата
+        %td= number_to_percentage(@agreement.interest, precision: 0)
       %tr
         %td Коментар
         %td= @agreement.comment

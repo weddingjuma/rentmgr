@@ -9,7 +9,7 @@
       %th
         %b Дійсний до
       %th
-        %b Орендна плата (%)
+        %b Орендна плата
       %th
         %b Архів
       %th.controls-3
@@ -26,7 +26,7 @@
         %td= e.code
         %td= e.sign_date
         %td= e.due_date
-        %td= e.interest
+        %td= number_to_percentage(e.interest, precision: 0)
         %td= e.archived
         %td
           .btn-group{role: "group"}

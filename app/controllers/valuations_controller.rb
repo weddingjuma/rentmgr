@@ -47,7 +47,7 @@ class ValuationsController < ApplicationController
 
     @valuation.destroy
 
-    redirect_to rent_object_path(rent_object)
+    redirect_to :back
   end
 
   private

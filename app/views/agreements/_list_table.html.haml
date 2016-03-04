@@ -43,9 +43,11 @@
         %tr
           %td
             - if e.addition?
-              %span.glyphicon.glyphicon-plus
+              %span.label.label-default
+                %abbr{title: "Додаткова угода"} ДУ
             - if e.change?
-              %span.glyphicon.glyphicon-pencil
+              %span.label.label-default
+                %abbr{title: "Договір про внесення змін"} ДПВЗ
           %td
           %td= e.code
           %td= e.due_date

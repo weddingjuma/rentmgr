@@ -51,4 +51,16 @@ class Agreement < ActiveRecord::Base
   def days_left
     (self.relevant_due_date - Date.today).to_i
   end
+
+  def relevant_interest
+    if self.extensions.any?
+      self.recent_extension.interest
+    else
+      self.interest
+    end
+  end
+
+  def yearly_rent
+    self.relevant_valuation.value * self.relevant_interest / 100
+  end
 end

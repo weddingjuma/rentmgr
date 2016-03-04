@@ -57,7 +57,7 @@ class ExtensionsController < ApplicationController
               :interest,
               :comment,
               :category,
-              :sessions,
-              :agreement)
+              :agreement,
+              session_ids: [])
   end
 end

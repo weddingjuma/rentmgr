@@ -55,6 +55,6 @@ class AgreementsController < ApplicationController
               :comment,
               :tenant_id,
               :rent_object_id,
-              :sessions)
+              session_ids: [])
   end
 end

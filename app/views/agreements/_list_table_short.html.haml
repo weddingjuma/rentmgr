@@ -19,7 +19,8 @@
         %td= a.due_date
         %td= a.tenant.name
         %td= a.interest
-        %td= a.archived
+        %td
+          %span{class: boolean_to_glyph_class(a.archived)}
         %td
           .pull-right.btn-group{role: "group"}
             = link_to '', agreement_path(a), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'

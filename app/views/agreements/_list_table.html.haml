@@ -24,13 +24,15 @@
       %tr{class: ('warning' if a.days_left <= 30 && a.days_left >=1) || ('danger' if a.days_left <= 0)}
         %td
           %span.glyphicon.glyphicon-file
-        %td= a.easement
+        %td
+          %span{class: boolean_to_glyph_class(a.easement)}
         %td= a.code
         %td= a.due_date
         %td= link_to a.tenant.name, tenant_path(a.tenant)
         %td= a.interest
         %td= link_to "#{a.rent_object.code} / #{a.rent_object.area} га.", rent_object_path(a.rent_object)
-        %td= a.archived
+        %td
+          %span{class: boolean_to_glyph_class(a.archived)}
         %td= a.days_left
         %td
           .btn-group{role: "group"}
@@ -54,7 +56,8 @@
           %td
           %td= e.interest
           %td
-          %td= e.archived
+          %td
+            %span{class: boolean_to_glyph_class(e.archived)}
           %td
           %td
             .btn-group{role: "group"}

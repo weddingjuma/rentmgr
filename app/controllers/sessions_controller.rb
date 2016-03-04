@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
 
     if @session.save
-      redirect_to @session
+      redirect_to sessions_path
     else
       render 'new'
     end

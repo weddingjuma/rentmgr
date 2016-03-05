@@ -8,29 +8,15 @@
         method: :delete,
         data: {confirm: 'Видалити запис сесії?'},
         class: %w(btn btn-danger)
-  .panel-body
-    %table.table
-      %tr
-        %td Номер
-        %td= @session.code
-      %tr
-        %td Дата проведення
-        %td= @session.s_date
+  %table.table
+    %tr
+      %td Номер
+      %td= @session.code
+    %tr
+      %td Дата проведення
+      %td= @session.s_date
 -if @session.agreements.any?
   .panel.panel-default
     .panel-heading
       %h3.panel-title Розглянуті договори
-    .panel-body
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Номер
-            %th Дійсний до
-            %th
-        %tbody
-          - @session.agreements.each do |a|
-            %tr
-              %td= a.code
-              %td= a.due_date
-              %td
-                = link_to 'Переглянути', agreement_path(a)
+    = render 'agreements/list_table_short', :@agreements => @session.agreements

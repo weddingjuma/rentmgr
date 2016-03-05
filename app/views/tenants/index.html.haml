@@ -1,28 +1,33 @@
-%table.table
-  %thead
-    %tr
-      %th Тип
-      %th Назва
-      %th Код
-      %th Адреса
-      %th.controls-3
-  %tbody
-    - @tenants.each do |t|
+.panel.panel-default
+  .panel-heading
+    = link_to 'Новий орендар',
+      new_tenant_path,
+      class: %w(btn btn-default)
+  %table.table.table-striped.table-bordered
+    %thead
       %tr
-        %td= t.category
-        %td= t.name
-        %td= t.code
-        %td
-          #{t.settlement.name},
-          #{t.street.kind} #{t.street.name},
-          - if !t.house_number.blank?
-            буд. #{t.house_number}
-          - if !t.apt_number.blank?
-            кв. #{t.apt_number}
-        %td
-          .btn-group{role: "group"}
-            = link_to '', tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
-            = link_to '', edit_tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
-            = link_to '', tenant_path(t), method: :delete,
-              data: { confirm: 'Видалити запис орендаря і його договори?' },
-              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'
+        %th Тип
+        %th Назва
+        %th Код
+        %th Адреса
+        %th.controls-3
+    %tbody
+      - @tenants.each do |t|
+        %tr
+          %td= t.category
+          %td= t.name
+          %td= t.code
+          %td
+            #{t.settlement.name},
+            #{t.street.kind} #{t.street.name},
+            - if !t.house_number.blank?
+              буд. #{t.house_number}
+            - if !t.apt_number.blank?
+              кв. #{t.apt_number}
+          %td
+            .btn-group{role: "group"}
+              = link_to '', tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'
+              = link_to '', edit_tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+              = link_to '', tenant_path(t), method: :delete,
+                data: { confirm: 'Видалити запис орендаря і його договори?' },
+                class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

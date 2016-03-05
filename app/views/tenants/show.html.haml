@@ -8,9 +8,7 @@
         method: :delete,
         data: {confirm: 'Видалити запис орендаря?'},
         class: %w(btn btn-danger)
-  .panel-body
-    = render 'show_table'
+  = render 'show_table'
 .panel.panel-default
   .panel-heading.panel-title Договори
-  .panel-body
-    = render 'agreements/list_table_short', :@agreements => @tenant.agreements
+  = render 'agreements/list_table_short', :@agreements => @tenant.agreements

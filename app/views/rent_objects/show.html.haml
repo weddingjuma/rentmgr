@@ -11,17 +11,14 @@
         method: :delete,
         data: {confirm: 'Видалити об’єкт оренди і його грошові оцінки?'},
         class: %w(btn btn-danger)
-  .panel-body
-    =render 'show_table'
+  =render 'show_table'
 - if @rent_object.valuations.any?
   .panel.panel-default
     .panel-heading
       %h3.panel-title Грошові оцінки
-    .panel-body
-      = render 'valuations/list_table', :@valuations => @rent_object.valuations
+    = render 'valuations/list_table', :@valuations => @rent_object.valuations
 - if @rent_object.agreements.any?
   .panel.panel-default
     .panel-heading
       %h3.panel-title Договори
-    .panel-body
-      =render 'agreements/list_table_short', :@agreements => @rent_object.agreements
+    =render 'agreements/list_table_short', :@agreements => @rent_object.agreements

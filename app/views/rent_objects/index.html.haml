@@ -1,1 +1,6 @@
-= render 'list_table'
+.panel.panel-default
+  .panel-heading
+    = link_to 'Новий об’єкт оренди',
+      new_rent_object_path,
+      class: %w(btn btn-default)
+  = render 'list_table'

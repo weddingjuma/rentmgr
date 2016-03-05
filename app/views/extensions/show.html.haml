@@ -10,21 +10,19 @@
         method: :delete,
         data: {confirm: 'Видалити документ?'},
         class: %w(btn btn-danger)
-  .panel-body
-    -# = render 'show_table'
-    %table.table.table-striped
-      %tr
-        %td Код
-        %td= @extension.code
-      %tr
-        %td Дата підписання
-        %td= @extension.sign_date
-      %tr
-        %td Дійсний до
-        %td= @extension.due_date
-      %tr
-        %td Орендна плата (%)
-        %td= @extension.interest
-      %tr
-        %td Коментар
-        %td= @extension.comment
+  %table.table.table-striped.table-bordered
+    %tr
+      %td Код
+      %td= @extension.code
+    %tr
+      %td Дата підписання
+      %td= @extension.sign_date
+    %tr
+      %td Дійсний до
+      %td= @extension.due_date
+    %tr
+      %td Орендна плата (%)
+      %td= @extension.interest
+    %tr
+      %td Коментар
+      %td= @extension.comment

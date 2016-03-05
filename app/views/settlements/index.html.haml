@@ -1,22 +1,24 @@
-= link_to 'Додати населений пункт',
-  new_settlement_path(@settlement),
-  class: %w(btn btn-default)
-%table.table
-  %thead
-    %tr
-      %th
-        %b Назва
-      %th
-        %b Тип
-      %th.controls-2
-  %tbody
-    - @settlements.each do |s|
+.panel.panel-default
+  .panel-heading
+    = link_to 'Додати населений пункт',
+      new_settlement_path,
+      class: %w(btn btn-default)
+  %table.table.table-striped.table-bordered
+    %thead
       %tr
-        %td= s.name
-        %td= s.kind
-        %td
-          .btn-group{role: "group"}
-            = link_to '', edit_settlement_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
-            = link_to '', settlement_path(s), method: :delete,
-              data: { confirm: 'Видалити запис населеного пункту?' },
-              class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'
+        %th
+          %b Назва
+        %th
+          %b Тип
+        %th.controls-2
+    %tbody
+      - @settlements.each do |s|
+        %tr
+          %td= s.name
+          %td= s.kind
+          %td
+            .btn-group{role: "group"}
+              = link_to '', edit_settlement_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'
+              = link_to '', settlement_path(s), method: :delete,
+                data: { confirm: 'Видалити запис населеного пункту?' },
+                class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

@@ -15,23 +15,22 @@
         method: :delete,
         data: { confirm: 'Видалити запис договору?' },
         class: %w(btn btn-danger)
-  .panel-body
-    %table.table.table-striped
-      %tr
-        %td Код
-        %td= @agreement.code
-      %tr
-        %td Дата підписання
-        %td= @agreement.sign_date
-      %tr
-        %td Дійсний до
-        %td= @agreement.due_date
-      %tr
-        %td Орендна плата
-        %td= number_to_percentage(@agreement.interest, precision: 0)
-      %tr
-        %td Коментар
-        %td= @agreement.comment
+  %table.table.table-striped.table-bordered
+    %tr
+      %td Код
+      %td= @agreement.code
+    %tr
+      %td Дата підписання
+      %td= @agreement.sign_date
+    %tr
+      %td Дійсний до
+      %td= @agreement.due_date
+    %tr
+      %td Орендна плата
+      %td= number_to_percentage(@agreement.interest, precision: 0)
+    %tr
+      %td Коментар
+      %td= @agreement.comment
 .row
   .col-md-6
     .panel.panel-default
@@ -40,9 +39,8 @@
           Об’єкт
           = link_to "№ #{@agreement.rent_object.code}",
             rent_object_path(@agreement.rent_object)
-      .panel-body
-        = render 'rent_objects/show_table',
-          :@rent_object => @agreement.rent_object
+      = render 'rent_objects/show_table',
+        :@rent_object => @agreement.rent_object
   .col-md-6
     .panel.panel-default
       .panel-heading
@@ -51,14 +49,12 @@
           -if @agreement.relevant_valuation
             = link_to "№ #{@agreement.relevant_valuation.code}",
               [@agreement.rent_object, @agreement.relevant_valuation]
-      .panel-body
-        = render 'valuations/list_table',
-          :@valuations => @agreement.rent_object.valuations,
-          :@agreement => @agreement
+      = render 'valuations/list_table',
+        :@valuations => @agreement.rent_object.valuations,
+        :@agreement => @agreement
 - if @agreement.extensions.any?
   .panel.panel-default
     .panel-heading
       %h3.panel-title Договори про внесення змін та додаткові угоди
-    .panel-body
-      = render 'extensions/list_table',
-        :@extensions => @agreement.extensions
+    = render 'extensions/list_table',
+      :@extensions => @agreement.extensions

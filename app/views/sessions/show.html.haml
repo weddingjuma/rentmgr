@@ -8,7 +8,7 @@
         method: :delete,
         data: {confirm: 'Видалити запис сесії?'},
         class: %w(btn btn-danger)
-  %table.table
+  %table.table.table-striped.table-bordered
     %tr
       %td Номер
       %td= @session.code

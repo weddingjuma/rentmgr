@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20160302091945) do
 
   create_table "sessions", force: :cascade do |t|
     t.date     "s_date"
-    t.integer  "code",       limit: 8
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "settlements", force: :cascade do |t|

@@ -10,5 +10,13 @@ class Extension < ActiveRecord::Base
             :interest,
             :category,
             :agreement,
+            :sessions,
             presence: true
+  validate :older_than_agreement?
+
+  def older_than_agreement?
+    if sign_date < agreement.sign_date
+      errors.add(:sign_date, "Не може бути підписаним раніше за початковий договір")
+    end
+  end
 end

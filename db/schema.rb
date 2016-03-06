@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(version: 20160302091945) do
 
   create_table "agreements", force: :cascade do |t|
-    t.integer  "code"
+    t.integer  "code",           limit: 8
     t.date     "sign_date"
     t.date     "due_date"
-    t.boolean  "easement"
-    t.boolean  "archived"
+    t.boolean  "easement",                 default: false
+    t.boolean  "archived",                 default: false
     t.integer  "interest"
     t.text     "comment"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "tenant_id"
     t.integer  "rent_object_id"
   end
@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20160302091945) do
     t.integer  "code",         limit: 8
     t.date     "sign_date"
     t.date     "due_date"
-    t.boolean  "archived"
+    t.boolean  "archived",               default: false
     t.integer  "interest"
     t.text     "comment"
     t.integer  "category"
     t.integer  "agreement_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   add_index "extensions", ["agreement_id"], name: "index_extensions_on_agreement_id"
@@ -56,14 +56,14 @@ ActiveRecord::Schema.define(version: 20160302091945) do
   end
 
   create_table "rent_objects", force: :cascade do |t|
-    t.integer  "code"
+    t.integer  "code",          limit: 8
     t.decimal  "area"
     t.text     "function"
     t.text     "comment"
     t.string   "house_number"
-    t.boolean  "rented",        default: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.boolean  "rented",                  default: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.integer  "settlement_id"
     t.integer  "street_id"
   end
@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20160302091945) do
 
   create_table "sessions", force: :cascade do |t|
     t.date     "s_date"
-    t.integer  "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "code",       limit: 8
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "settlements", force: :cascade do |t|
@@ -109,11 +109,11 @@ ActiveRecord::Schema.define(version: 20160302091945) do
   add_index "tenants", ["street_id"], name: "index_tenants_on_street_id"
 
   create_table "valuations", force: :cascade do |t|
-    t.integer  "code"
+    t.integer  "code",           limit: 8
     t.date     "val_date"
     t.decimal  "value"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "rent_object_id"
   end
 

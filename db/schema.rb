@@ -56,14 +56,14 @@ ActiveRecord::Schema.define(version: 20160302091945) do
   end
 
   create_table "rent_objects", force: :cascade do |t|
-    t.integer  "code",          limit: 8
+    t.string   "code"
     t.decimal  "area"
     t.text     "function"
     t.text     "comment"
     t.string   "house_number"
-    t.boolean  "rented",                  default: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.boolean  "rented",        default: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "settlement_id"
     t.integer  "street_id"
   end

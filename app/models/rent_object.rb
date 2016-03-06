@@ -5,13 +5,22 @@ class RentObject < ActiveRecord::Base
   has_many :valuations, dependent: :destroy
   has_many :tenants, through: :agreements
 
-  validates :code, :area, :function, :settlement, :street, presence: true
-  validates :code, numericality: { only_integer: true }
-  validates :area, numericality: true
-  validates :comment, :function, :length => {
-    :maximum => 500,
-    :too_long => "Максимум 500 символів"
-  }
+  validates :function, :settlement, :street, presence: true
+  validates :code,
+    length: { is: 22 },
+    format: {
+      with: /\A\d{10}:\d{2}:\d{3}:\d{4}\Z/,
+      message: "Правильний формат: (000000000:00:000:0000)"
+    },
+    presence: true
+  validates :area,
+    numericality: { greater_than: 0, message: "Значення має бути більшим нуля" },
+    presence: true
+  validates :comment, :function,
+    length: {
+      maximum: 500,
+      too_long: "Максимальна кількість символів: 500"
+    }
 
   after_touch :renew_status
 

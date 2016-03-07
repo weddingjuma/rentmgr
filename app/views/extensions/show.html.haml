@@ -21,8 +21,8 @@
       %td Дійсний до
       %td= @extension.due_date
     %tr
-      %td Орендна плата (%)
-      %td= @extension.interest
+      %td Орендна плата
+      %td= number_to_percentage(@extension.interest, precision: 0)
     %tr
       %td Коментар
       %td= @extension.comment

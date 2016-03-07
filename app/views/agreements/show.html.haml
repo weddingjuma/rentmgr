@@ -26,6 +26,11 @@
       %td Дійсний до
       %td= @agreement.due_date
     %tr
+      %td Орендар
+      %td
+        = link_to "#{@agreement.tenant.category} #{@agreement.tenant.name}",
+          tenant_path(@agreement.tenant)
+    %tr
       %td Орендна плата
       %td= number_to_percentage(@agreement.interest, precision: 0)
     %tr

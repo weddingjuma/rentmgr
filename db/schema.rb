@@ -109,11 +109,11 @@ ActiveRecord::Schema.define(version: 20160302091945) do
   add_index "tenants", ["street_id"], name: "index_tenants_on_street_id"
 
   create_table "valuations", force: :cascade do |t|
-    t.integer  "code",           limit: 8
+    t.string   "code"
     t.date     "val_date"
     t.decimal  "value"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "rent_object_id"
   end
 

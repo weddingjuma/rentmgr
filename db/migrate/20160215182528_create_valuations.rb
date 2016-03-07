@@ -1,7 +1,7 @@
 class CreateValuations < ActiveRecord::Migration
   def change
     create_table :valuations do |t|
-      t.integer :code, limit: 8
+      t.string :code
       t.date :val_date
       t.decimal :value
 

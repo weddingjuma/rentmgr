@@ -9,8 +9,7 @@
         %b Вартість
       %th.controls-3
   %tbody
-    - @valuations.each do |v|
-      -# - if params[:controller] == 'agreements'
+    - @valuations.order(:val_date).each do |v|
       %tr{class: (('success' if @agreement.relevant_valuation == v) if params[:controller] == 'agreements')}
         %td= v.code
         %td= v.val_date

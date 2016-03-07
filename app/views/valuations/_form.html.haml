@@ -1,6 +1,5 @@
 = simple_form_for [@rent_object, @valuation] do |f|
-  = f.input :code, label: 'Номер'
-  = f.input :val_date, label: 'Дата оцінки'
-  = f.input :value, label: 'Вартість'
-  -# = f.association :rent_object, label: 'Об’єкт, що оцінюється'
+  = f.input :code, label: 'Номер', placeholder: 'Номер'
+  = f.input :val_date, label: 'Дата'
+  = f.input :value, label: 'Сума', placeholder: 'Сума'
   = f.button :submit, 'Зберегти'

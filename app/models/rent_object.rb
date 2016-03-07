@@ -7,7 +7,6 @@ class RentObject < ActiveRecord::Base
 
   validates :function, :settlement, :street, presence: true
   validates :code,
-    length: { is: 22 },
     format: {
       with: /\A\d{10}:\d{2}:\d{3}:\d{4}\Z/,
       message: "Правильний формат: (000000000:00:000:0000)"

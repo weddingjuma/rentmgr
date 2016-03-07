@@ -23,7 +23,11 @@
     - @agreements.each do |a|
       %tr{class: ('warning' if a.days_left <= 30 && a.days_left >=1) || ('danger' if a.days_left <= 0)}
         %td
-          %span.glyphicon.glyphicon-file
+          %span.label.label-primary
+            - if a.easement?
+              %abbr{ title: "Договір сервітут" } ДС
+            - else
+              %abbr{ title: "Договір оренди" } ДО
         %td
           %span{class: boolean_to_glyph_class(a.easement)}
         %td= a.code

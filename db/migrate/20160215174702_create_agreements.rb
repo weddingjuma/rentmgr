@@ -1,7 +1,7 @@
 class CreateAgreements < ActiveRecord::Migration
   def change
     create_table :agreements do |t|
-      t.integer :code, limit: 8
+      t.string :code
       t.date :sign_date
       t.date :due_date
       t.boolean :easement, default: false

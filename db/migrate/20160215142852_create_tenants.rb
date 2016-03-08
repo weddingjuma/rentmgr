@@ -3,7 +3,7 @@ class CreateTenants < ActiveRecord::Migration
     create_table :tenants do |t|
       t.integer :category
       t.string :name
-      t.integer :code, limit: 8
+      t.string :code
       t.string :house_number
       t.integer :apt_number
       t.text :comment

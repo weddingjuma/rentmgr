@@ -1,6 +1,7 @@
 class AgreementsController < ApplicationController
   def index
-    @agreements = Agreement.all
+    @search = Agreement.search(params[:q])
+    @agreements = @search.result
   end
 
   def show

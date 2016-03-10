@@ -39,13 +39,12 @@ ActiveRecord::Schema.define(version: 20160302091945) do
     t.integer  "code",         limit: 8
     t.date     "sign_date"
     t.date     "due_date"
-    t.boolean  "archived",               default: false
     t.integer  "interest"
     t.text     "comment"
     t.integer  "category"
     t.integer  "agreement_id"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "extensions", ["agreement_id"], name: "index_extensions_on_agreement_id"

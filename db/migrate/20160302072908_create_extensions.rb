@@ -4,7 +4,6 @@ class CreateExtensions < ActiveRecord::Migration
       t.integer :code, limit: 8
       t.date :sign_date
       t.date :due_date
-      t.boolean :archived, default: false
       t.integer :interest
       t.text :comment
       t.integer :category

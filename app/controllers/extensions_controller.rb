@@ -53,7 +53,6 @@ class ExtensionsController < ApplicationController
       .permit(:code,
               :sign_date,
               :due_date,
-              :archived,
               :interest,
               :comment,
               :category,

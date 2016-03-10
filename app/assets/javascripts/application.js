@@ -14,5 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require moment
+//= require moment/uk.js
+//= require daterangepicker
 //= require jquery.inputmask.bundle
 //= require_tree .

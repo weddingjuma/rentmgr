@@ -1,0 +1,13 @@
+%table.table.table-striped.table-bordered
+  %tr
+    %td
+      %b Всього договорів
+    %td= @agreements.count
+  %tr
+    %td
+      %b Всього договорів оренди
+    %td= @agreements.where(easement: false).count
+  %tr
+    %td
+      %b Всього договорів сервітуту
+    %td= @agreements.where(easement: true).count

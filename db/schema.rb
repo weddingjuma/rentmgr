@@ -14,15 +14,15 @@
 ActiveRecord::Schema.define(version: 20160302091945) do
 
   create_table "agreements", force: :cascade do |t|
-    t.integer  "code",           limit: 8
+    t.string   "code"
     t.date     "sign_date"
     t.date     "due_date"
-    t.boolean  "easement",                 default: false
-    t.boolean  "archived",                 default: false
+    t.boolean  "easement",       default: false
+    t.boolean  "archived",       default: false
     t.integer  "interest"
     t.text     "comment"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "tenant_id"
     t.integer  "rent_object_id"
   end
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160302091945) do
   end
 
   create_table "extensions", force: :cascade do |t|
-    t.integer  "code",         limit: 8
+    t.string   "code"
     t.date     "sign_date"
     t.date     "due_date"
     t.integer  "interest"
@@ -94,12 +94,12 @@ ActiveRecord::Schema.define(version: 20160302091945) do
   create_table "tenants", force: :cascade do |t|
     t.integer  "category"
     t.string   "name"
-    t.integer  "code",          limit: 8
+    t.string   "code"
     t.string   "house_number"
     t.integer  "apt_number"
     t.text     "comment"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "settlement_id"
     t.integer  "street_id"
   end

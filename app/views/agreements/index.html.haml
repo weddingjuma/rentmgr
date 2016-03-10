@@ -16,6 +16,11 @@
           = f.input :due_date_lteq, as: :hidden
 
           = f.submit "Пошук", class: 'btn btn-default'
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title Статистика
+      = render 'stats_table'
 .panel.panel-default
   .panel-heading
     = link_to 'Новий договір',

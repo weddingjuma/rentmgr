@@ -27,6 +27,10 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'enum_help'
+gem 'ransack', '~> 1.7'
+
+gem 'momentjs-rails', '~> 2.11'
+gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -16,13 +16,11 @@ class ValuationsController < ApplicationController
   def new
     @rent_object = RentObject.find(params[:rent_object_id])
     @valuation = Valuation.new
-    # @valuation.rent_object = @rent_object
   end
 
   def create
     @rent_object = RentObject.find(params[:rent_object_id])
-    @valuation = Valuation.new(valuation_params)
-    @valuation.rent_object = @rent_object
+    @valuation = @rent_object.valuations.build(valuation_params)
 
     if @valuation.save
       redirect_to @rent_object

@@ -17,8 +17,7 @@ class ExtensionsController < ApplicationController
 
   def create
     @agreement = Agreement.find(params[:agreement_id])
-    @extension = Extension.new(extension_params)
-    @extension.agreement = @agreement
+    @extension = @agreement.extensions.build(extension_params)
 
     if @extension.save
       redirect_to @extension.agreement

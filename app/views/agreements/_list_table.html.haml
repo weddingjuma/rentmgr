@@ -3,21 +3,25 @@
     %tr
       %th
       %th
-        %b Сервітут
-      %th
         %b Номер
       %th
-        %b Дійсний до
+        = sort_link(@search, :sign_date, 'Від') do
+          %b Від
+      %th
+        = sort_link(@search, :due_date, 'До') do
+          %b Дійсний до
       %th
         %b Орендар
       %th
-        %b Орендна плата
+        %b
+          %abbr{title: "Орендна плата"} ОП
       %th
         %b Об’єкт оренди
       %th
         %b Архів
       %th
-        %b Днів залишилось
+        %b
+          %abbr{title: "Днів залишилось"} ДЗ
       %th.controls-3
   %tbody
     - @agreements.each do |a|
@@ -25,12 +29,11 @@
         %td
           %span.label.label-primary
             - if a.easement?
-              %abbr{ title: "Договір сервітут" } ДС
+              %abbr{ title: "Договір сервітуту" } ДС
             - else
               %abbr{ title: "Договір оренди" } ДО
-        %td
-          %span{class: boolean_to_glyph_class(a.easement)}
         %td= a.code
+        %td= a.sign_date
         %td= a.due_date
         %td= link_to a.tenant.name, tenant_path(a.tenant)
         %td= number_to_percentage(a.interest, precision: 0)
@@ -54,8 +57,8 @@
             - if e.change?
               %span.label.label-default
                 %abbr{title: "Договір про внесення змін"} ДПВЗ
-          %td
           %td= e.code
+          %td= e.sign_date
           %td= e.due_date
           %td
           %td= number_to_percentage(e.interest, precision: 0)

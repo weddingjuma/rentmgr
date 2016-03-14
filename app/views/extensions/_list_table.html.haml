@@ -10,8 +10,6 @@
         %b Дійсний до
       %th
         %b Орендна плата
-      %th
-        %b Архів
       %th.controls-3
   %tbody
     - @extensions.each do |e|
@@ -27,7 +25,6 @@
         %td= e.sign_date
         %td= e.due_date
         %td= number_to_percentage(e.interest, precision: 0)
-        %td= e.archived
         %td
           .btn-group{role: "group"}
             = link_to '', agreement_extension_path(e.agreement, e), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'

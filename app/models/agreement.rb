@@ -34,7 +34,7 @@ class Agreement < ActiveRecord::Base
   # Ensures getting of last extension by date
   def recent_extension
     if self.extensions.any?
-      self.extensions.where(archived: false).order(:sign_date, :created_at).last
+      self.extensions.order(:sign_date).last
     else
       nil
     end

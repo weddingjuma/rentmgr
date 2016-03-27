@@ -1,9 +1,10 @@
 ready = ->
   dateFormat = 'YYYY-MM-DD'
+  ukDateFormat = 'DD.MM.YYYY'
   pickerOptions = {
     autoUpdateInput: false
     locale:
-      format: dateFormat
+      format: ukDateFormat
     linkedCalendars: false
     ranges:
       'Цього року': [moment().startOf('year'), moment().endOf('year')]
@@ -14,8 +15,8 @@ ready = ->
   signDateGteq = $('#q_sign_date_gteq')
   signDateLteq = $('#q_sign_date_lteq')
 
-  pickerStartDate = if signDateGteq.attr('value') == undefined then moment().format(dateFormat) else signDateGteq.attr('value')
-  pickerEndDate = if signDateLteq.attr('value') == undefined then moment().add(2, 'day').format(dateFormat) else signDateLteq.attr('value')
+  pickerStartDate = if signDateGteq.attr('value') == undefined then moment().format(ukDateFormat) else moment(signDateGteq.attr('value')).format(ukDateFormat)
+  pickerEndDate = if signDateLteq.attr('value') == undefined then moment().add(2, 'day').format(ukDateFormat) else moment(signDateLteq.attr('value')).format(ukDateFormat)
 
   if signDateGteq.attr('value') != undefined
     $('#q_sign_daterange').val(pickerStartDate + ' - ' + pickerEndDate)
@@ -25,7 +26,7 @@ ready = ->
   pickerOptions.endDate = pickerEndDate
   $('#q_sign_daterange').daterangepicker pickerOptions
   .on 'apply.daterangepicker', (ev, picker) ->
-    $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat))
+    $(this).val(picker.startDate.format(ukDateFormat) + ' - ' + picker.endDate.format(ukDateFormat))
     signDateGteq.val picker.startDate.format(dateFormat)
     signDateLteq.val picker.endDate.format(dateFormat)
   .on 'cancel.daterangepicker', (ev, picker) ->
@@ -36,8 +37,8 @@ ready = ->
   dueDateGteq = $('#q_due_date_gteq')
   dueDateLteq = $('#q_due_date_lteq')
 
-  pickerStartDate = if dueDateGteq.attr('value') == undefined then moment().format(dateFormat) else dueDateGteq.attr('value')
-  pickerEndDate = if dueDateLteq.attr('value') == undefined then moment().add(2, 'day').format(dateFormat) else dueDateLteq.attr('value')
+  pickerStartDate = if dueDateGteq.attr('value') == undefined then moment().format(ukDateFormat) else moment(dueDateGteq.attr('value')).format(ukDateFormat)
+  pickerEndDate = if dueDateLteq.attr('value') == undefined then moment().add(2, 'day').format(ukDateFormat) else moment(dueDateLteq.attr('value')).format(ukDateFormat)
 
   if dueDateGteq.attr('value') != undefined
     $('#q_due_daterange').val(pickerStartDate + ' - ' + pickerEndDate)
@@ -46,7 +47,7 @@ ready = ->
   pickerOptions.endDate = pickerEndDate
   $('#q_due_daterange').daterangepicker pickerOptions
   .on 'apply.daterangepicker', (ev, picker) ->
-    $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat))
+    $(this).val(picker.startDate.format(ukDateFormat) + ' - ' + picker.endDate.format(ukDateFormat))
     dueDateGteq.val picker.startDate.format(dateFormat)
     dueDateLteq.val picker.endDate.format(dateFormat)
   .on 'cancel.daterangepicker', (ev, picker) ->

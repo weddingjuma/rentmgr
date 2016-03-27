@@ -28,6 +28,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'enum_help'
 gem 'ransack', '~> 1.7'
+gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
 
 gem 'momentjs-rails', '~> 2.11'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'

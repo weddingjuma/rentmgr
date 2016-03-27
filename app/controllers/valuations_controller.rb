@@ -31,6 +31,7 @@ class ValuationsController < ApplicationController
 
   def update
     @valuation = Valuation.find(params[:id])
+    @rent_object = @valuation.rent_object
 
     if @valuation.update(valuation_params)
       redirect_to rent_object_path(@valuation.rent_object)

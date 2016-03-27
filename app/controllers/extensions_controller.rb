@@ -28,6 +28,7 @@ class ExtensionsController < ApplicationController
 
   def update
     @extension = Extension.find(params[:id])
+    @agreement = @extension.agreement
 
     if @extension.update(extension_params)
       redirect_to agreement_path(@extension.agreement)

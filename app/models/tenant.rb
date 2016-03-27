@@ -1,5 +1,5 @@
 class Tenant < ActiveRecord::Base
-  enum category: %w(citizen fop pp other)
+  enum category: %w(citizen natural_person legal_person)
 
   belongs_to :settlement
   belongs_to :street

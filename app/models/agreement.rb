@@ -4,7 +4,7 @@ class Agreement < ActiveRecord::Base
   has_and_belongs_to_many :sessions
   has_many :extensions, dependent: :destroy
 
-  validates :code, :sign_date, :due_date, :interest, :tenant, :rent_objects,
+  validates :code, :reg_date, :due_date, :interest, :tenant, :rent_objects,
     presence: true
   validates :code, numericality: { only_integer: true }
   validates :interest,
@@ -21,14 +21,14 @@ class Agreement < ActiveRecord::Base
     self.rent_objects.each(&:touch)
   end
 
-  def last_sign_date
-    recent_extension ? recent_extension.sign_date : sign_date
+  def last_reg_date
+    recent_extension ? recent_extension.reg_date : reg_date
   end
 
   # Ensures getting of last extension by date
   def recent_extension
     if self.extensions.any?
-      self.extensions.order(:sign_date).last
+      self.extensions.order(:reg_date).last
     else
       nil
     end
@@ -57,7 +57,7 @@ class Agreement < ActiveRecord::Base
   def yearly_rent
     rent_objects.map do |ro|
       if ro.valuations.any?
-        ro.relevant_valuation(last_sign_date).value * relevant_interest / 100
+        ro.relevant_valuation(last_reg_date).value * relevant_interest / 100
       else
         '-'
       end

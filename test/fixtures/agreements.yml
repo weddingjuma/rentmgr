@@ -2,14 +2,14 @@
 
 one:
   code: 1
-  sign_date: 2016-02-15
+  reg_date: 2016-02-15
   due_date: 2016-02-15
   archived: false
   interest: 1
 
 two:
   code: 1
-  sign_date: 2016-02-15
+  reg_date: 2016-02-15
   due_date: 2016-02-15
   archived: false
   interest: 1

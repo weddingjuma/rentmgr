@@ -48,7 +48,7 @@ class AgreementsController < ApplicationController
   def agreement_params
     params.require(:agreement)
       .permit(:code,
-              :sign_date,
+              :reg_date,
               :due_date,
               :archived,
               :easement,

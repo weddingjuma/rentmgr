@@ -5,7 +5,7 @@
       %th
         %b Номер
       %th
-        %b Дата підписання
+        %b Дата реєстрації
       %th
         %b Дійсний до
       %th
@@ -22,7 +22,7 @@
             %span.label.label-default
               %abbr{title: "Договір про внесення змін"} ДПВЗ
         %td= e.code
-        %td= e.sign_date
+        %td= e.reg_date
         %td= e.due_date
         %td= number_to_percentage(e.interest, precision: 0)
         %td

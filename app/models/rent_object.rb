@@ -74,7 +74,7 @@ class RentObject < ActiveRecord::Base
     end
   end
 
-  def relevant_valuation(sign_date)
-    recent_valuation_up_to sign_date
+  def relevant_valuation(reg_date)
+    recent_valuation_up_to reg_date
   end
 end

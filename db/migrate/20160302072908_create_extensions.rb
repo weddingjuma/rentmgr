@@ -2,7 +2,7 @@ class CreateExtensions < ActiveRecord::Migration
   def change
     create_table :extensions do |t|
       t.string :code
-      t.date :sign_date
+      t.date :reg_date
       t.date :due_date
       t.integer :interest
       t.text :comment

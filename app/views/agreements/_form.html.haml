@@ -1,8 +1,8 @@
 = simple_form_for @agreement do |f|
   = f.input :easement, label: 'Сервітут'
   = f.input :code, label: 'Номер'
-  = f.input :sign_date,
-            label: 'Дата підписання',
+  = f.input :reg_date,
+            label: 'Дата реєстрації',
             start_year: Date.today.year - 20,
             end_year: Date.today.year + 50
   = f.input :due_date,

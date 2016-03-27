@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160327151802) do
 
   create_table "agreements", force: :cascade do |t|
     t.string   "code"
-    t.date     "sign_date"
+    t.date     "reg_date"
     t.date     "due_date"
     t.boolean  "easement",       default: false
     t.boolean  "archived",       default: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160327151802) do
 
   create_table "extensions", force: :cascade do |t|
     t.string   "code"
-    t.date     "sign_date"
+    t.date     "reg_date"
     t.date     "due_date"
     t.integer  "interest"
     t.text     "comment"

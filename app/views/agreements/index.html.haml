@@ -9,9 +9,9 @@
 
           = f.input :tenant_name_cont, required: false, label: 'Назва орендаря'
 
-          = f.input :sign_daterange, label: 'Дата підписання', input_html: {value: ""}, required: false
-          = f.input :sign_date_gteq, as: :hidden
-          = f.input :sign_date_lteq, as: :hidden
+          = f.input :reg_daterange, label: 'Дата реєстрації', input_html: {value: ""}, required: false
+          = f.input :reg_date_gteq, as: :hidden
+          = f.input :reg_date_lteq, as: :hidden
 
           = f.input :due_daterange, label: 'Дійсний до', input_html: {value: ""}, required: false
           = f.input :due_date_gteq, as: :hidden

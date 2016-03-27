@@ -5,7 +5,7 @@ class Extension < ActiveRecord::Base
   enum category: %w(change addition)
 
   validates :code,
-            :sign_date,
+            :reg_date,
             :due_date,
             :interest,
             :category,
@@ -15,8 +15,8 @@ class Extension < ActiveRecord::Base
   validate :older_than_agreement?
 
   def older_than_agreement?
-    if sign_date < agreement.sign_date
-      errors.add(:sign_date, "Не може бути підписаним раніше за початковий договір")
+    if reg_date < agreement.reg_date
+      errors.add(:reg_date, "Не може бути підписаним раніше за початковий договір")
     end
   end
 end

@@ -20,8 +20,8 @@
       %td Код
       %td= @agreement.code
     %tr
-      %td Дата підписання
-      %td= @agreement.sign_date
+      %td Дата реєстрації
+      %td= @agreement.reg_date
     %tr
       %td Дійсний до
       %td= @agreement.due_date
@@ -58,9 +58,9 @@
         .panel-heading
           %h3.panel-title
             Актуальна грошова оцінка
-            -if ro.relevant_valuation @agreement.last_sign_date
-              = link_to "№ #{ro.relevant_valuation(@agreement.last_sign_date).code}",
-                [ro, ro.relevant_valuation(@agreement.last_sign_date)]
+            -if ro.relevant_valuation @agreement.last_reg_date
+              = link_to "№ #{ro.relevant_valuation(@agreement.last_reg_date).code}",
+                [ro, ro.relevant_valuation(@agreement.last_reg_date)]
         = render 'valuations/list_table',
           :@valuations => ro.valuations,
           :@agreement => @agreement

@@ -5,7 +5,7 @@
       %th
         %b Номер
       %th
-        = sort_link(@search, :sign_date, 'Від') do
+        = sort_link(@search, :reg_date, 'Від') do
           %b Від
       %th
         = sort_link(@search, :due_date, 'До') do
@@ -33,7 +33,7 @@
             - else
               %abbr{ title: "Договір оренди" } ДО
         %td= a.code
-        %td= a.sign_date
+        %td= a.reg_date
         %td= a.due_date
         %td= link_to "#{translate_tenant_category(a.tenant.category)} #{a.tenant.name}", tenant_path(a.tenant)
         %td= number_to_percentage(a.interest, precision: 0)
@@ -61,7 +61,7 @@
               %span.label.label-default
                 %abbr{title: "Договір про внесення змін"} ДПВЗ
           %td= e.code
-          %td= e.sign_date
+          %td= e.reg_date
           %td= e.due_date
           %td
           %td= number_to_percentage(e.interest, precision: 0)

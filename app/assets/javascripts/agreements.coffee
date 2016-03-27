@@ -12,19 +12,19 @@ ready = ->
       'Наступного тижня': [moment().add(1, 'week').startOf('week'), moment().add(1, 'week').endOf('week')]
   }
 
-  signDateGteq = $('#q_sign_date_gteq')
-  signDateLteq = $('#q_sign_date_lteq')
+  signDateGteq = $('#q_reg_date_gteq')
+  signDateLteq = $('#q_reg_date_lteq')
 
   pickerStartDate = if signDateGteq.attr('value') == undefined then moment().format(ukDateFormat) else moment(signDateGteq.attr('value')).format(ukDateFormat)
   pickerEndDate = if signDateLteq.attr('value') == undefined then moment().add(2, 'day').format(ukDateFormat) else moment(signDateLteq.attr('value')).format(ukDateFormat)
 
   if signDateGteq.attr('value') != undefined
-    $('#q_sign_daterange').val(pickerStartDate + ' - ' + pickerEndDate)
+    $('#q_reg_daterange').val(pickerStartDate + ' - ' + pickerEndDate)
 
 
   pickerOptions.startDate = pickerStartDate
   pickerOptions.endDate = pickerEndDate
-  $('#q_sign_daterange').daterangepicker pickerOptions
+  $('#q_reg_daterange').daterangepicker pickerOptions
   .on 'apply.daterangepicker', (ev, picker) ->
     $(this).val(picker.startDate.format(ukDateFormat) + ' - ' + picker.endDate.format(ukDateFormat))
     signDateGteq.val picker.startDate.format(dateFormat)

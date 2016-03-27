@@ -2,7 +2,7 @@ class CreateAgreements < ActiveRecord::Migration
   def change
     create_table :agreements do |t|
       t.string :code
-      t.date :sign_date
+      t.date :reg_date
       t.date :due_date
       t.boolean :easement, default: false
       t.boolean :archived, default: false

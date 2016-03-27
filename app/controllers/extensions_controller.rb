@@ -50,7 +50,7 @@ class ExtensionsController < ApplicationController
   def extension_params
     params.require(:extension)
       .permit(:code,
-              :sign_date,
+              :reg_date,
               :due_date,
               :interest,
               :comment,

@@ -22,8 +22,8 @@
             %span.label.label-default
               %abbr{title: "Договір про внесення змін"} ДПВЗ
         %td= e.code
-        %td= e.reg_date
-        %td= e.due_date
+        %td= I18n.l e.reg_date
+        %td= I18n.l e.due_date
         %td= number_to_percentage(e.interest, precision: 0)
         %td
           .btn-group{role: "group"}

@@ -12,7 +12,7 @@
     - @valuations.order(:val_date).each do |v|
       %tr{class: (('success' if v.rent_object.relevant_valuation(@agreement.last_reg_date) == v) if params[:controller] == 'agreements')}
         %td= v.code
-        %td= v.val_date
+        %td= I18n.l v.val_date
         %td= v.value
         %td
           .btn-group{role: "group"}

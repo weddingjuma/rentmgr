@@ -16,8 +16,8 @@ uk:
     tenant:
       category:
         citizen: 'громадянин'
-        natural_person: 'Фізична особа'
-        legal_person: 'Юридична особа'
+        natural_person: 'фізична особа'
+        legal_person: 'юридична особа'
   activerecord:
     errors:
       models:

@@ -16,10 +16,10 @@
       %td= @extension.code
     %tr
       %td Дата реєстрації
-      %td= @extension.reg_date
+      %td= I18n.l @extension.reg_date
     %tr
       %td Дійсний до
-      %td= @extension.due_date
+      %td= I18n.l @extension.due_date
     %tr
       %td Орендна плата
       %td= number_to_percentage(@extension.interest, precision: 0)

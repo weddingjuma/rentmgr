@@ -21,14 +21,14 @@
       %td= @agreement.code
     %tr
       %td Дата реєстрації
-      %td= @agreement.reg_date
+      %td= I18n.l @agreement.reg_date
     %tr
       %td Дійсний до
-      %td= @agreement.due_date
+      %td= I18n.l @agreement.due_date
     %tr
       %td Орендар
       %td
-        = link_to "#{@agreement.tenant.category} #{@agreement.tenant.name}",
+        = link_to "#{translate_tenant_category @agreement.tenant.category} #{@agreement.tenant.name}",
           tenant_path(@agreement.tenant)
     %tr
       %td Орендна плата

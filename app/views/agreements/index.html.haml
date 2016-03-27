@@ -17,6 +17,8 @@
           = f.input :due_date_gteq, as: :hidden
           = f.input :due_date_lteq, as: :hidden
 
+          = f.input :archived_eq, as: :select, label: 'Архів', required: false
+
           = f.submit "Пошук", class: 'btn btn-default'
   .col-md-6
     .panel.panel-default

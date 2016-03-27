@@ -15,7 +15,7 @@
       - @sessions.each do |s|
         %tr
           %td= s.code
-          %td= s.s_date
+          %td= I18n.l s.s_date
           %td
             .btn-group{role: "group"}
               = link_to '', session_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'

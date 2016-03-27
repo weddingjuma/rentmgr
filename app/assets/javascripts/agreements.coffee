@@ -5,6 +5,9 @@ ready = ->
     autoUpdateInput: false
     locale:
       format: ukDateFormat
+      applyLabel: 'Застосувати'
+      cancelLabel: 'Відмінити'
+      customRangeLabel: 'Свій варіант'
     linkedCalendars: false
     ranges:
       'Цього року': [moment().startOf('year'), moment().endOf('year')]

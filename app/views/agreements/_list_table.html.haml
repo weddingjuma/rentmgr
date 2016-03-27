@@ -33,9 +33,13 @@
             - else
               %abbr{ title: "Договір оренди" } ДО
         %td= a.code
-        %td= a.reg_date
-        %td= a.due_date
-        %td= link_to "#{translate_tenant_category(a.tenant.category)} #{a.tenant.name}", tenant_path(a.tenant)
+        %td= I18n.l a.reg_date
+        %td= I18n.l a.due_date
+        %td
+          = link_to "#{a.tenant.name}", tenant_path(a.tenant)
+          %span.label.label-default
+            %abbr{ title: translate_tenant_category(a.tenant.category) }
+              = translate_tenant_category(a.tenant.category)[0].mb_chars.upcase
         %td= number_to_percentage(a.interest, precision: 0)
         %td
           - a.rent_objects.each do |ro|
@@ -61,8 +65,8 @@
               %span.label.label-default
                 %abbr{title: "Договір про внесення змін"} ДПВЗ
           %td= e.code
-          %td= e.reg_date
-          %td= e.due_date
+          %td= I18n.l e.reg_date
+          %td= I18n.l e.due_date
           %td
           %td= number_to_percentage(e.interest, precision: 0)
           %td

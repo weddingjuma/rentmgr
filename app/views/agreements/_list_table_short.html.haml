@@ -16,7 +16,7 @@
     - @agreements.each do |a|
       %tr
         %td= a.code
-        %td= a.due_date
+        %td= I18n.l a.due_date
         %td= a.tenant.name
         %td= number_to_percentage(a.interest, precision: 0)
         %td

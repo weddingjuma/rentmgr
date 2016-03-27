@@ -4,7 +4,7 @@ class Agreement < ActiveRecord::Base
   has_and_belongs_to_many :sessions
   has_many :extensions, dependent: :destroy
 
-  validates :code, :reg_date, :due_date, :interest, :tenant, :rent_objects,
+  validates :reg_date, :due_date, :interest, :tenant, :sessions, :rent_objects,
     presence: true
   validates :code, numericality: { only_integer: true }
   validates :interest,

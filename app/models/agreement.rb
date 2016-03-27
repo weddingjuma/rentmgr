@@ -1,10 +1,10 @@
 class Agreement < ActiveRecord::Base
   belongs_to :tenant
-  belongs_to :rent_object
+  has_and_belongs_to_many :rent_objects
   has_and_belongs_to_many :sessions
   has_many :extensions, dependent: :destroy
 
-  validates :code, :sign_date, :due_date, :interest, :tenant, :rent_object,
+  validates :code, :sign_date, :due_date, :interest, :tenant, :rent_objects,
     presence: true
   validates :code, numericality: { only_integer: true }
   validates :interest,
@@ -14,11 +14,11 @@ class Agreement < ActiveRecord::Base
     too_long: "Максимум 500 символів"
   }
 
-  after_destroy :touch_rent_object
-  after_save :touch_rent_object
+  after_destroy :touch_rent_objects
+  after_save :touch_rent_objects
 
-  def touch_rent_object
-    self.rent_object.touch
+  def touch_rent_objects
+    self.rent_objects.each(&:touch)
   end
 
   def relevant_valuation

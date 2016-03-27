@@ -37,7 +37,10 @@
         %td= a.due_date
         %td= link_to a.tenant.name, tenant_path(a.tenant)
         %td= number_to_percentage(a.interest, precision: 0)
-        %td= link_to "#{a.rent_object.code} / #{a.rent_object.area} га.", rent_object_path(a.rent_object)
+        %td
+          - a.rent_objects.each do |ro|
+            = link_to "#{ro.code} / #{ro.area} га. / #{ro.function}", rent_object_path(ro)
+            %br
         %td
           %span{class: boolean_to_glyph_class(a.archived)}
         %td= a.days_left

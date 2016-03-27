@@ -1,7 +1,7 @@
 class RentObject < ActiveRecord::Base
   belongs_to :settlement
   belongs_to :street
-  has_many :agreements
+  has_and_belongs_to_many :agreements
   has_many :valuations, dependent: :destroy
   has_many :tenants, through: :agreements
 

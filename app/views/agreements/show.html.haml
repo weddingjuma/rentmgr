@@ -36,27 +36,28 @@
     %tr
       %td Коментар
       %td= @agreement.comment
-.row
-  .col-md-6
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title
-          Об’єкт
-          = link_to "№ #{@agreement.rent_object.code}",
-            rent_object_path(@agreement.rent_object)
-      = render 'rent_objects/show_table',
-        :@rent_object => @agreement.rent_object
-  .col-md-6
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title
-          Актуальна грошова оцінка
-          -if @agreement.relevant_valuation
-            = link_to "№ #{@agreement.relevant_valuation.code}",
-              [@agreement.rent_object, @agreement.relevant_valuation]
-      = render 'valuations/list_table',
-        :@valuations => @agreement.rent_object.valuations,
-        :@agreement => @agreement
+- @agreement.rent_objects.each do |ro|
+  .row
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Об’єкт
+            = link_to "№ #{ro.code}",
+              rent_object_path(ro)
+        = render 'rent_objects/show_table',
+          :@rent_object => ro
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            Актуальна грошова оцінка
+            -if ro.relevant_valuation @agreement.last_sign_date
+              = link_to "№ #{ro.relevant_valuation(@agreement.last_sign_date).code}",
+                [ro, ro.relevant_valuation(@agreement.last_sign_date)]
+        = render 'valuations/list_table',
+          :@valuations => ro.valuations,
+          :@agreement => @agreement
 - if @agreement.extensions.any?
   .panel.panel-default
     .panel-heading

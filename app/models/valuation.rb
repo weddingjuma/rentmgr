@@ -6,9 +6,9 @@ class Valuation < ActiveRecord::Base
     format: {
       with: %r{
         \A(
-        (\d{2}-\d\/\d{2}-\d\/\d{2,4})|
+        (\d{2}-\d\/\d{2}-\d\/\d{1,4})|
         (\d{3}-\d{2}-\d\/\d)|
-        (\d{2}-\d{4}-\d\.\d-\d{3}\/\d-\d{2})
+        (\d{2}-\d{4}-\d\.\d-\d{1,4}\/\d-\d{2})
         )\Z
       }x,
       message: "Невірний формат."

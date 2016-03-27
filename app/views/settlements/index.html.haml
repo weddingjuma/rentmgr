@@ -15,7 +15,7 @@
       - @settlements.each do |s|
         %tr
           %td= s.name
-          %td= s.kind
+          %td= I18n.t "enums.settlement.kind.#{s.kind}"
           %td
             .btn-group{role: "group"}
               = link_to '', edit_settlement_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'

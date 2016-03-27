@@ -24,4 +24,8 @@ module AgreementsHelper
     end
     extensions
   end
+
+  def tenant_categories_uk
+    Tenant.categories.transform_keys { |k| I18n.t "enums.tenant.category.#{k}" }
+  end
 end

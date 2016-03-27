@@ -1,0 +1,40 @@
+uk:
+  enums:
+    extension:
+      category:
+        change: 'договір про внесення змін'
+        addition: 'додаткова угода'
+    street:
+      kind:
+        str: 'вулиця'
+        blvd: 'бульвар'
+        lane: 'провулок'
+    settlement:
+      kind:
+        city: 'місто'
+        willage: 'село'
+    tenant:
+      category:
+        citizen: 'громадянин'
+        natural_person: 'Фізична особа'
+        legal_person: 'Юридична особа'
+  activerecord:
+    errors:
+      models:
+        street:
+          attributes:
+            kind:
+              blank: 'Оберіть тип вулиці'
+            name:
+              blank: 'Введіть назву вулці'
+        tenant:
+          attributes:
+            name:
+              blank: 'Введіть назву орендаря'
+            code:
+              blank: 'Введіть код орендаря'
+              not_a_number: 'Має бути числом'
+            settlement:
+              blank: 'Оберіть населений пункт'
+            street:
+              blank: 'Оберіть вулицю'

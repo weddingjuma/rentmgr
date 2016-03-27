@@ -5,6 +5,8 @@
         %h3.panel-title Пошук
       .panel-body
         = search_form_for @search, url: agreements_path, builder: SimpleForm::FormBuilder do |f|
+          = f.input :tenant_category_eq, as: :select, collection: tenant_categories_uk, required: false, label: 'Тип орендаря'
+
           = f.input :tenant_name_cont, required: false, label: 'Назва орендаря'
 
           = f.input :sign_daterange, label: 'Дата підписання', input_html: {value: ""}, required: false

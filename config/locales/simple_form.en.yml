@@ -29,3 +29,16 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+uk:
+  simple_form:
+    "yes": 'Так'
+    "no": 'Ні'
+    required:
+      text: 'Обов’язкове поле'
+      mark: '*'
+    options:
+      tenant:
+        category:
+          citizen: 'громадянин'
+          natural_person: 'Фізична особа'
+          legal_person: 'Юридична особа'

@@ -14,12 +14,12 @@
     %tbody
       - @tenants.each do |t|
         %tr
-          %td= t.category
+          %td= translate_tenant_category(t.category)
           %td= t.name
           %td= t.code
           %td
             #{t.settlement.name},
-            #{t.street.kind} #{t.street.name},
+            #{translate_street_kind(t.street)} #{t.street.name},
             - if !t.house_number.blank?
               буд. #{t.house_number}
             - if !t.apt_number.blank?

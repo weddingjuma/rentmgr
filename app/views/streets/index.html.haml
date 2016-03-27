@@ -15,7 +15,7 @@
       - @streets.each do |s|
         %tr
           %td= s.name
-          %td= s.kind
+          %td= translate_street_kind(s)
           %td
             .btn-group{role: "group"}
               = link_to '', edit_street_path(s), class: 'btn btn-default btn-xs glyphicon glyphicon-pencil'

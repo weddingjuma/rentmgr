@@ -35,7 +35,7 @@
         %td= a.code
         %td= a.sign_date
         %td= a.due_date
-        %td= link_to a.tenant.name, tenant_path(a.tenant)
+        %td= link_to "#{translate_tenant_category(a.tenant.category)} #{a.tenant.name}", tenant_path(a.tenant)
         %td= number_to_percentage(a.interest, precision: 0)
         %td
           - a.rent_objects.each do |ro|

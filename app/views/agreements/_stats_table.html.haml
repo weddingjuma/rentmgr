@@ -11,3 +11,11 @@
     %td
       %b Всього договорів сервітуту
     %td= @agreements.where(easement: true).count
+  %tr
+    %td
+      %b Всього договорів про внесення змін
+    %td= count_extensions(@agreements, 'change')
+  %tr
+    %td
+      %b Всього додаткових угод
+    %td= count_extensions(@agreements, 'addition')

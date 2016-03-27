@@ -21,12 +21,8 @@ class Agreement < ActiveRecord::Base
     self.rent_objects.each(&:touch)
   end
 
-  def relevant_valuation
-    last_sign_date = self.sign_date
-
-    last_sign_date = self.recent_extension.sign_date if self.extensions.any?
-
-    self.rent_object.recent_valuation_up_to last_sign_date
+  def last_sign_date
+    recent_extension ? recent_extension.sign_date : sign_date
   end
 
   # Ensures getting of last extension by date
@@ -59,6 +55,12 @@ class Agreement < ActiveRecord::Base
   end
 
   def yearly_rent
-    self.relevant_valuation.value * self.relevant_interest / 100
+    rent_objects.map do |ro|
+      if ro.valuations.any?
+        ro.relevant_valuation(last_sign_date).value * relevant_interest / 100
+      else
+        '-'
+      end
+    end
   end
 end

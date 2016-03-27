@@ -34,6 +34,12 @@
       %td Орендна плата
       %td= number_to_percentage(@agreement.interest, precision: 0)
     %tr
+      %td Річна орендна плата
+      %td
+        - @agreement.yearly_rent.each do |rent|
+          = "#{rent} грн."
+          %br
+    %tr
       %td Коментар
       %td= @agreement.comment
 - @agreement.rent_objects.each do |ro|

@@ -73,4 +73,8 @@ class RentObject < ActiveRecord::Base
       nil
     end
   end
+
+  def relevant_valuation(sign_date)
+    recent_valuation_up_to sign_date
+  end
 end

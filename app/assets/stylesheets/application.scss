@@ -10,10 +10,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: normal;
-  padding-top: 7px;
+  padding-top: 5px;
 }
 .panel-heading a:not(.btn) {
   color: #337ab7
+}
+.panel-heading span {
+  margin-left: 10px;
 }
 .controls-3 {
   width: 88px

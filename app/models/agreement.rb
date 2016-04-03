@@ -6,7 +6,9 @@ class Agreement < ActiveRecord::Base
 
   validates :reg_date, :due_date, :interest, :tenant, :sessions, :rent_objects,
     presence: true
-  validates :code, numericality: { only_integer: true }
+  validates :code,
+    numericality: { only_integer: true },
+    allow_blank: true
   validates :interest,
     numericality: { only_integer: true, less_than_or_equal_to: 100 }
   validates :comment, length: {

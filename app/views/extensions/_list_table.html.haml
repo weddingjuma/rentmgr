@@ -13,7 +13,7 @@
       %th.controls-3
   %tbody
     - @extensions.each do |e|
-      %tr
+      %tr{class: (recent_extension_class(e) if params[:controller] == 'agreements')}
         %td
           - if e.addition?
             %span.label.label-default

@@ -28,4 +28,20 @@ module AgreementsHelper
   def tenant_categories_uk
     Tenant.categories.transform_keys { |k| I18n.t "enums.tenant.category.#{k}" }
   end
+
+  def label_css_class(agreement)
+    days_left = agreement.days_left
+    if days_left.between? 1, 30
+      'label-warning'
+    elsif days_left <= 0
+      'label-danger'
+    else
+      'label-success'
+    end
+  end
+
+  def table_row_class(agreement)
+    return 'warning' if agreement.days_left.between? 1, 30
+    'danger' if agreement.days_left <= 0
+  end
 end

@@ -1,5 +1,8 @@
 = simple_form_for [@rent_object, @valuation] do |f|
   = f.input :code, label: 'Номер', placeholder: 'Номер'
-  = f.input :val_date, label: 'Дата'
+  = f.input :val_date,
+    label: 'Дата',
+    start_year: Date.today.year - 20,
+    end_year: Date.today.year
   = f.input :value, label: 'Вартість', placeholder: 'Вартість'
   = f.button :submit, 'Зберегти'

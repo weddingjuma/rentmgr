@@ -1,8 +1,8 @@
 = simple_form_for [@agreement, @extension] do |f|
   = f.input :category, label: 'Вид оновлення'
   = f.input :code, label: 'Номер'
-  = f.input :reg_date, label: 'Дата реєстрації', start_year: Date.today.year - 20, end_year: Date.today.year + 50
-  = f.input :due_date, label: 'Дійсний до'
+  = f.input :reg_date, label: 'Дата реєстрації', start_year: Date.today.year - 20, end_year: Date.today.year
+  = f.input :due_date, label: 'Дійсний до', start_year: Date.today.year - 20, end_year: Date.today.year + 50
   = f.input :interest, label: 'Орендна плата (%)'
   = f.association :sessions,
                   label: 'Сесії',

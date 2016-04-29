@@ -1,4 +1,7 @@
 = simple_form_for @session do |f|
   = f.input :code, :label => 'Номер'
-  = f.input :s_date, :label => 'Дата проведення'
+  = f.input :s_date,
+    label:  'Дата проведення',
+    start_year: Date.today.year - 20,
+    end_year: Date.today.year
   = f.button :submit, 'Зберегти'

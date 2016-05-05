@@ -65,4 +65,14 @@ class Agreement < ActiveRecord::Base
       end
     end
   end
+
+  def allowed_objects
+    return RentObject.all if archived?
+    if rent_objects.any?
+      ro = RentObject.where(rented: false) + rent_objects
+      ro.uniq
+    else
+      RentObject.where(rented: false)
+    end
+  end
 end

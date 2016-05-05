@@ -11,18 +11,10 @@
             end_year: Date.today.year + 50
   = f.input :interest, label: 'Орендна плата (%)'
   = f.association :tenant, label: 'Орендар'
-  -# HACK (DRY)
-  - if @agreement.rent_objects.any?
-
-    = f.association :rent_objects,
-                    label: 'Об’єкти оренди',
-                    collection: @agreement.archived? ? RentObject.where(rented: false) : RentObject.where(rented: false) + @agreement.rent_objects,
-                    label_method: lambda { |ro| "#{ro.code} / #{ro.area} га. / #{ro.function}"}
-  - else
-    = f.association :rent_objects,
-                    label: 'Об’єкти оренди',
-                    collection: RentObject.where(rented: false),
-                    label_method: lambda { |ro| "#{ro.code} / #{ro.area} га. / #{ro.function}"}
+  = f.association :rent_objects,
+                  label: 'Об’єкти оренди',
+                  collection: @agreement.allowed_objects,
+                  label_method: lambda { |ro| "#{ro.code} / #{ro.area} га. / #{ro.function}"}
   = f.association :sessions,
                   label: 'Сесії',
                   label_method: lambda { |s| "#{I18n.l s.s_date} / #{s.code}" }

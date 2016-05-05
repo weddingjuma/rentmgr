@@ -4,8 +4,7 @@ class Extension < ActiveRecord::Base
 
   enum category: %w(change addition)
 
-  validates :code,
-            :reg_date,
+  validates :reg_date,
             :due_date,
             :interest,
             :category,

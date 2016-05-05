@@ -16,11 +16,18 @@ class Agreement < ActiveRecord::Base
     too_long: "Максимум 500 символів"
   }
 
-  after_destroy :touch_rent_objects
+# Archive before destroying, to renew rent_objects` :rented status
+# Touching on destroy callback not working :(
+  before_destroy :archive!
   after_save :touch_rent_objects
 
+  def archive!
+    self.update(archived: true)
+  end
+
   def touch_rent_objects
-    self.rent_objects.each(&:touch)
+    ro = self.rent_objects
+    ro.each(&:touch)
   end
 
   def last_reg_date

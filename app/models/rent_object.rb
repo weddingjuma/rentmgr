@@ -3,7 +3,7 @@ class RentObject < ActiveRecord::Base
   belongs_to :street
   has_and_belongs_to_many :agreements
   has_many :valuations, dependent: :destroy
-  has_many :tenants, through: :agreements
+  has_many :tenants, through: :agreements, dependent: :restrict_with_error
 
   validates :function, :settlement, :street, presence: true
   validates :code,

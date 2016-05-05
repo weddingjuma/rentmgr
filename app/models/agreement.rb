@@ -65,7 +65,7 @@ class Agreement < ActiveRecord::Base
 
   def yearly_rent
     rent_objects.map do |ro|
-      if ro.valuations.any?
+      if ro.relevant_valuation(last_reg_date)
         ro.relevant_valuation(last_reg_date).value * relevant_interest / 100
       else
         '-'

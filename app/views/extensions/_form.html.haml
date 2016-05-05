@@ -6,6 +6,7 @@
   = f.input :interest, label: 'Орендна плата (%)'
   = f.association :sessions,
                   label: 'Сесії',
+                  collection: Session.where("s_date >= ?", @agreement.reg_date).order(:s_date => :desc),
                   label_method: lambda { |s| "#{I18n.l s.s_date} / #{s.code}" }
   = f.input :comment, label: 'Коментар'
   = f.button :submit, 'Зберегти'

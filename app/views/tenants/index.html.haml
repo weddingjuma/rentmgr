@@ -18,12 +18,12 @@
           %td= t.name
           %td= t.code
           %td
-            #{t.settlement.name},
-            #{translate_street_kind(t.street)} #{t.street.name},
+            = "#{t.settlement.name},"
+            = "#{translate_street_kind(t.street)} #{t.street.name}"
             - if !t.house_number.blank?
-              буд. #{t.house_number}
+              = ", буд. #{t.house_number}"
             - if !t.apt_number.blank?
-              кв. #{t.apt_number}
+              = ", кв. #{t.apt_number}"
           %td
             .btn-group{role: "group"}
               = link_to '', tenant_path(t), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'

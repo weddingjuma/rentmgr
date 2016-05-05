@@ -16,9 +16,9 @@
   .panel.panel-default
     .panel-heading
       %h3.panel-title Грошові оцінки
-    = render 'valuations/list_table', :@valuations => @rent_object.valuations
+    = render 'valuations/list_table', :@valuations => @rent_object.valuations.order(val_date: :desc)
 - if @rent_object.agreements.any?
   .panel.panel-default
     .panel-heading
       %h3.panel-title Договори
-    =render 'agreements/list_table_short', :@agreements => @rent_object.agreements
+    =render 'agreements/list_table_short', :@agreements => @rent_object.agreements.order(reg_date: :desc)

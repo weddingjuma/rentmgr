@@ -1,25 +1,33 @@
 %table.table.table-striped.table-bordered
   %tr
-    %td Тип
+    %td
+      %b Тип
     %td= translate_tenant_category @tenant.category
   %tr
-    %td Назва
+    %td
+      %b Назва
     %td= @tenant.name
   %tr
-    %td Код
+    %td
+      %b Код
     %td= @tenant.code
   %tr
-    %td Вулиця
+    %td
+      %b Вулиця
     %td= @tenant.street.name
   %tr
-    %td Населений пункт
+    %td
+      %b Населений пункт
     %td= @tenant.settlement.name
   %tr
-    %td Номер будинку
+    %td
+      %b Номер будинку
     %td= @tenant.house_number
   %tr
-    %td Номер квартири
+    %td
+      %b Номер квартири
     %td= @tenant.apt_number
   %tr
-    %td Коментар
+    %td
+      %b Коментар
     %td= @tenant.comment

@@ -26,3 +26,9 @@
     %tr
       %td Коментар
       %td= @extension.comment
+    %tr
+      %td Сесії
+      %td
+        - @extension.sessions.each do |s|
+          = "#{I18n.l s.s_date} / #{s.code}"
+          %br

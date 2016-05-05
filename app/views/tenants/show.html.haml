@@ -11,4 +11,4 @@
   = render 'show_table'
 .panel.panel-default
   .panel-heading.panel-title Договори
-  = render 'agreements/list_table_short', :@agreements => @tenant.agreements
+  = render 'agreements/list_table_short', :@agreements => @tenant.agreements.order(reg_date: :desc)

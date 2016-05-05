@@ -19,9 +19,9 @@
   .panel.panel-default
     .panel-heading
       %h3.panel-title Розглянуті договори
-    = render 'agreements/list_table_short', :@agreements => @session.agreements
+    = render 'agreements/list_table_short', :@agreements => @session.agreements.order(reg_date: :desc)
 - if @session.extensions.any?
   .panel.panel-default
     .panel-heading
       %h3.panel-title Розглянуті договори про внесення змін та додаткові угоди
-    = render 'extensions/list_table', :@extensions => @session.extensions
+    = render 'extensions/list_table', :@extensions => @session.extensions.order(reg_date: :desc)

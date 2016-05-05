@@ -3,7 +3,10 @@
   = f.input :area, label: 'Площа', placeholder: 'Площа земельної ділянки в гектарах'
   = f.input :function, label: 'Призначення', placeholder: 'Призначення об’єкта оренди'
   = f.association :settlement, label: 'Населений пункт'
-  = f.association :street, label: 'Вулиця'
+  = f.association :street,
+    label: 'Вулиця',
+    collection: Street.all.order(name: :asc),
+    label_method: lambda { |s| "#{s.name},  #{translate_street_kind(s)}" }
   = f.input :house_number, label: 'Номер будинку', placeholder: 'Номер будинку'
   = f.input :comment, label: 'Коментар', placeholder: 'Коментар'
   = f.button :submit, 'Зберегти'

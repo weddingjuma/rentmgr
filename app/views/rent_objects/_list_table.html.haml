@@ -16,7 +16,10 @@
         %td= o.code
         %td= o.area
         %td= o.function
-        %td= "#{o.street.name}, #{o.house_number}"
+        %td
+          = "#{translate_street_kind(o.street)} #{o.street.name}"
+          - if !o.house_number.blank?
+            = ", буд. #{o.house_number}"
         %td
           .btn-group{role: "group"}
             = link_to '', rent_object_path(o), class: 'btn btn-default btn-xs glyphicon glyphicon-eye-open'

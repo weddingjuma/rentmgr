@@ -1,10 +1,11 @@
 .panel.panel-default
   .panel-heading.clearfix
     %h3.panel-title.pull-left
-      - if @agreement.archived
-        [Архів]
       Договір №
       = @agreement.code
+    %span.label{class: label_css_class(@agreement)}= "#{@agreement.days_left} днів"
+    - if @agreement.archived
+      %span.label.label-default Архів
     .btn-group{role: "group", class: "pull-right"}
       = link_to 'Редагувати', edit_agreement_path(@agreement),
         class: %w(btn btn-default)
@@ -17,7 +18,7 @@
         class: %w(btn btn-danger)
   %table.table.table-striped.table-bordered
     %tr
-      %td Код
+      %td Номер
       %td= @agreement.code
     %tr
       %td Дата реєстрації
@@ -28,8 +29,12 @@
     %tr
       %td Орендар
       %td
-        = link_to "#{translate_tenant_category @agreement.tenant.category} #{@agreement.tenant.name}",
+        = link_to "#{@agreement.tenant.name}",
           tenant_path(@agreement.tenant)
+        %span.label.label-default
+          %abbr{ title: translate_tenant_category(@agreement.tenant.category) }
+            = translate_tenant_category(@agreement.tenant.category)[0].mb_chars.upcase
+
     %tr
       %td Орендна плата
       %td= number_to_percentage(@agreement.interest, precision: 0)
@@ -42,6 +47,18 @@
     %tr
       %td Коментар
       %td= @agreement.comment
+    %tr
+      %td Сесії
+      %td
+        - @agreement.sessions.each do |s|
+          = "#{I18n.l s.s_date} / #{s.code}"
+          %br
+- if @agreement.extensions.any?
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title Договори про внесення змін та додаткові угоди
+    = render 'extensions/list_table',
+      :@extensions => @agreement.extensions.order(reg_date: :desc)
 - @agreement.rent_objects.each do |ro|
   .row
     .col-md-6
@@ -58,15 +75,9 @@
         .panel-heading
           %h3.panel-title
             Актуальна грошова оцінка
-            -if ro.relevant_valuation @agreement.last_reg_date
+            -if ro.relevant_valuation(@agreement.last_reg_date)
               = link_to "№ #{ro.relevant_valuation(@agreement.last_reg_date).code}",
                 [ro, ro.relevant_valuation(@agreement.last_reg_date)]
         = render 'valuations/list_table',
-          :@valuations => ro.valuations,
+          :@valuations => ro.valuations.order(val_date: :desc),
           :@agreement => @agreement
-- if @agreement.extensions.any?
-  .panel.panel-default
-    .panel-heading
-      %h3.panel-title Договори про внесення змін та додаткові угоди
-    = render 'extensions/list_table',
-      :@extensions => @agreement.extensions

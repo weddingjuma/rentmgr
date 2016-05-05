@@ -4,7 +4,9 @@
       %th
         %b Номер
       %th
-        %b Дійсний до
+        %b Від
+      %th
+        %b До
       %th
         %b Орендар
       %th
@@ -16,6 +18,7 @@
     - @agreements.each do |a|
       %tr
         %td= a.code
+        %td= I18n.l a.reg_date
         %td= I18n.l a.due_date
         %td= a.tenant.name
         %td= number_to_percentage(a.interest, precision: 0)

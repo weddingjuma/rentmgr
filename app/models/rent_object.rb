@@ -26,24 +26,15 @@ class RentObject < ActiveRecord::Base
   def renew_status
     if self.active_agreement
       self.rented = true
-      self.save
     else
       self.rented = false
-      self.save
     end
-  end
-
-  # Allow single current agreement or zero unarchived agreements.
-  def has_conflicting_agreements?
-    if self.agreements.where(archived: false).count > 1
-      true
-    else
-      false
-    end
+    self.save
   end
 
   def active_agreement
-    if !self.has_conflicting_agreements?
+    # Allow single active agreement or zero unarchived agreements.
+    if !self.agreements.where(archived: false).count > 1
       self.agreements.where(archived: false).first
     else
       raise "Error. Multiple active agreements detected."
@@ -63,7 +54,7 @@ class RentObject < ActiveRecord::Base
     end
   end
 
-  def recent_valuation_up_to(to_date)
+  def relevant_valuation(to_date)
     if self.valuations.any?
       valuation = self.valuations
         .where("val_date <= :to_date", {to_date: to_date})
@@ -72,9 +63,5 @@ class RentObject < ActiveRecord::Base
     else
       nil
     end
-  end
-
-  def relevant_valuation(reg_date)
-    recent_valuation_up_to reg_date
   end
 end

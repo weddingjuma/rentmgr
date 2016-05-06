@@ -34,7 +34,7 @@ class RentObject < ActiveRecord::Base
 
   def active_agreement
     # Allow single active agreement or zero unarchived agreements.
-    if !self.agreements.where(archived: false).count > 1
+    if !(self.agreements.where(archived: false).count > 1)
       self.agreements.where(archived: false).first
     else
       raise "Error. Multiple active agreements detected."

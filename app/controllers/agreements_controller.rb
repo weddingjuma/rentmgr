@@ -46,7 +46,8 @@ class AgreementsController < ApplicationController
   private
 
   def agreement_params
-    params.require(:agreement)
+    params
+      .require(:agreement)
       .permit(:code,
               :reg_date,
               :due_date,
@@ -55,7 +56,7 @@ class AgreementsController < ApplicationController
               :interest,
               :comment,
               :tenant_id,
-              :rent_object_ids => [],
-              :session_ids => [])
+              rent_object_ids: [],
+              session_ids: [])
   end
 end

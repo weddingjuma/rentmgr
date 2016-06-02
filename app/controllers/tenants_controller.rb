@@ -43,8 +43,10 @@ class TenantsController < ApplicationController
   end
 
   private
+
   def tenant_params
-    params.require(:tenant)
+    params
+      .require(:tenant)
       .permit(:category,
               :name,
               :code,

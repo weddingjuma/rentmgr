@@ -5,12 +5,12 @@ class Agreement < ActiveRecord::Base
   has_many :extensions, dependent: :destroy
 
   validates :reg_date, :due_date, :interest, :tenant, :sessions, :rent_objects,
-    presence: true
+            presence: true
   validates :code,
-    numericality: { only_integer: true },
-    allow_blank: true
+            numericality: { only_integer: true },
+            allow_blank: true
   validates :interest,
-    numericality: { only_integer: true, less_than_or_equal_to: 100 }
+            numericality: { only_integer: true, less_than_or_equal_to: 100 }
   validates :comment, length: {
     maximum: 500,
     too_long: "Максимум 500 символів"
@@ -22,11 +22,11 @@ class Agreement < ActiveRecord::Base
   after_save :touch_rent_objects
 
   def archive!
-    self.update(archived: true)
+    update(archived: true)
   end
 
   def touch_rent_objects
-    ro = self.rent_objects
+    ro = rent_objects
     ro.each(&:touch)
   end
 
@@ -36,30 +36,26 @@ class Agreement < ActiveRecord::Base
 
   # Ensures getting of last extension by date
   def recent_extension
-    if self.extensions.any?
-      self.extensions.order(:reg_date, :created_at).last
-    else
-      nil
-    end
+    extensions.order(:reg_date, :created_at).last if extensions.any?
   end
 
   def relevant_due_date
-    if self.extensions.any?
-      self.recent_extension.due_date
+    if extensions.any?
+      recent_extension.due_date
     else
-      self.due_date
+      due_date
     end
   end
 
   def days_left
-    (self.relevant_due_date - Date.today).to_i
+    (relevant_due_date - Date.today).to_i
   end
 
   def relevant_interest
-    if self.extensions.any?
-      self.recent_extension.interest
+    if extensions.any?
+      recent_extension.interest
     else
-      self.interest
+      interest
     end
   end
 

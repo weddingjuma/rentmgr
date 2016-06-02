@@ -3,11 +3,8 @@ module AgreementsHelper
     changes = 0
     if agreements.any?
       agreements.each do |a|
-          a.extensions.each { |e| changes += 1 if e.change?}
+        a.extensions.each { |e| changes += 1 if e.change? }
       end
-      changes
-    else
-      changes
     end
     changes
   end
@@ -16,11 +13,8 @@ module AgreementsHelper
     extensions = 0
     if agreements.any?
       agreements.each do |a|
-        a.extensions.each { |e| extensions += 1 if e.category == category}
+        a.extensions.each { |e| extensions += 1 if e.category == category }
       end
-      extensions
-    else
-      extensions
     end
     extensions
   end

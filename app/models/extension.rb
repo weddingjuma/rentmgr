@@ -12,7 +12,7 @@ class Extension < ActiveRecord::Base
             :sessions,
             presence: true
   validates :interest,
-    numericality: { only_integer: true, less_than_or_equal_to: 100 }
+            numericality: { only_integer: true, less_than_or_equal_to: 100 }
   validate :older_than_agreement?
 
   def older_than_agreement?

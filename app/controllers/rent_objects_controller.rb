@@ -45,7 +45,8 @@ class RentObjectsController < ApplicationController
   private
 
   def rent_object_params
-    params.require(:rent_object)
+    params
+      .require(:rent_object)
       .permit(:code,
               :area,
               :function,

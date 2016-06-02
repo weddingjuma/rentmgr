@@ -1,6 +1,6 @@
 class RentObjectsController < ApplicationController
   def index
-    @rent_objects = RentObject.all
+    @rent_objects = RentObject.all.includes(:street)
   end
 
   def show

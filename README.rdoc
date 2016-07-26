@@ -1,7 +1,0 @@
-App for rent agreements management.
-
-This program was created to replace MS Word table (wich contained few thousands of records), provide filtering capabilities and allow data access to multiple people at a time.
-It was intended for LAN usage and deployed in a very unpleasant environment (ubuntu-server virtual machine with 256 MB ram running on Windows 7 host).
-
-Screenshots:
-http://imgur.com/a/DiIhw

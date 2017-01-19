@@ -23,6 +23,10 @@ gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
 group :development, :test do
   gem 'byebug'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara', '~> 2.11'
+  gem 'factory_girl_rails', '~> 4.8'
+  gem 'faker', '~> 1.7'
 end
 
 group :development do

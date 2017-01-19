@@ -1,10 +1,11 @@
 class SettlementsController < ApplicationController
+  before_action :set_settlement, only: [:edit, :update, :destroy]
+
   def index
     @settlements = Settlement.all
   end
 
   def edit
-    @settlement = Settlement.find(params[:id])
   end
 
   def new
@@ -22,8 +23,6 @@ class SettlementsController < ApplicationController
   end
 
   def update
-    @settlement = Settlement.find(params[:id])
-
     if @settlement.update(settlement_params)
       redirect_to settlements_path
     else
@@ -32,13 +31,16 @@ class SettlementsController < ApplicationController
   end
 
   def destroy
-    @settlement = Settlement.find(params[:id])
     @settlement.destroy
 
     redirect_to settlements_path
   end
 
   private
+
+  def set_settlement
+    @settlement = Settlement.find(params[:id])
+  end
 
   def settlement_params
     params.require(:settlement).permit(:name, :kind)

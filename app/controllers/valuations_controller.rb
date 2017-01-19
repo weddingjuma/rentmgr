@@ -1,25 +1,24 @@
 class ValuationsController < ApplicationController
+  before_action :set_valuation, only: [:show, :edit, :update, :destroy]
+  before_action :set_rent_object, only: [:new, :create]
+
   def index
     @valuations = Valuation.all
   end
 
   def show
-    @valuation = Valuation.find(params[:id])
     @rent_object = @valuation.rent_object
   end
 
   def edit
-    @valuation = Valuation.find(params[:id])
     @rent_object = @valuation.rent_object
   end
 
   def new
-    @rent_object = RentObject.find(params[:rent_object_id])
     @valuation = Valuation.new
   end
 
   def create
-    @rent_object = RentObject.find(params[:rent_object_id])
     @valuation = @rent_object.valuations.build(valuation_params)
 
     if @valuation.save
@@ -30,7 +29,6 @@ class ValuationsController < ApplicationController
   end
 
   def update
-    @valuation = Valuation.find(params[:id])
     @rent_object = @valuation.rent_object
 
     if @valuation.update(valuation_params)
@@ -41,15 +39,20 @@ class ValuationsController < ApplicationController
   end
 
   def destroy
-    @valuation = Valuation.find(params[:id])
-    rent_object = @valuation.rent_object
-
     @valuation.destroy
 
     redirect_to :back
   end
 
   private
+
+  def set_valuation
+    @valuation = Valuation.find(params[:id])
+  end
+
+  def set_rent_object
+    @rent_object = RentObject.find(params[:rent_object_id])
+  end
 
   def valuation_params
     params.require(:valuation).permit(:code, :val_date, :value, :rent_object_id)

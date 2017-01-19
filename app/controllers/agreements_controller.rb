@@ -1,15 +1,15 @@
 class AgreementsController < ApplicationController
+  before_action :set_agreement, only: [:show, :edit, :update, :destroy]
+
   def index
     @search = Agreement.search(params[:q])
     @agreements = @search.result
   end
 
   def show
-    @agreement = Agreement.find(params[:id])
   end
 
   def edit
-    @agreement = Agreement.find(params[:id])
   end
 
   def new
@@ -27,8 +27,6 @@ class AgreementsController < ApplicationController
   end
 
   def update
-    @agreement = Agreement.find(params[:id])
-
     if @agreement.update(agreement_params)
       redirect_to @agreement
     else
@@ -37,13 +35,16 @@ class AgreementsController < ApplicationController
   end
 
   def destroy
-    @agreement = Agreement.find(params[:id])
     @agreement.destroy
 
     redirect_to agreements_path
   end
 
   private
+
+  def set_agreement
+    @agreement = Agreement.find(params[:id])
+  end
 
   def agreement_params
     params

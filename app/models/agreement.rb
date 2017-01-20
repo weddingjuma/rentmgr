@@ -1,6 +1,8 @@
 class Agreement < ActiveRecord::Base
   belongs_to :tenant
-  has_and_belongs_to_many :rent_objects
+  has_and_belongs_to_many :rent_objects,
+    after_remove: Proc.new { |a, ro| ro.renew_status },
+    after_add: Proc.new { |a, ro| ro.renew_status }
   has_and_belongs_to_many :sessions
   has_many :extensions, dependent: :destroy
 
@@ -15,36 +17,30 @@ class Agreement < ActiveRecord::Base
     maximum: 500,
     too_long: "Максимум 500 символів"
   }
+  validate :no_object_status_conflict
 
-# Archive before destroying, to renew rent_objects` :rented status
-# Touching on destroy callback not working :(
+# Archive before destroying (trigger after_save), to renew rent_objects` :rented status
   before_destroy :archive!
-  after_save :touch_rent_objects
+  after_save :renew_ro_status
 
   def archive!
     update(archived: true)
   end
 
-  def touch_rent_objects
-    ro = rent_objects
-    ro.each(&:touch)
+  def renew_ro_status
+    rent_objects.each(&:renew_status)
   end
 
   def last_reg_date
-    recent_extension ? recent_extension.reg_date : reg_date
+    extensions.any? ? recent_extension.reg_date : reg_date
   end
 
-  # Ensures getting of last extension by date
   def recent_extension
-    extensions.order(:reg_date, :created_at).last if extensions.any?
+    extensions.last if extensions.any?
   end
 
   def relevant_due_date
-    if extensions.any?
-      recent_extension.due_date
-    else
-      due_date
-    end
+    extensions.any? ? recent_extension.due_date : due_date
   end
 
   def days_left
@@ -52,11 +48,7 @@ class Agreement < ActiveRecord::Base
   end
 
   def relevant_interest
-    if extensions.any?
-      recent_extension.interest
-    else
-      interest
-    end
+    extensions.any? ? recent_extension.interest : interest
   end
 
   def yearly_rent_sums
@@ -70,6 +62,20 @@ class Agreement < ActiveRecord::Base
       ro.uniq
     else
       RentObject.where(rented: false)
+    end
+  end
+
+  private
+
+  def has_objects_rented_by_other_active_agreements
+    other_agreement_ids = rent_objects.map(&:agreement_ids).flatten.uniq - [self.id]
+    other_agreements = Agreement.find(other_agreement_ids)
+    other_agreements.map(&:archived?).include?(false)
+  end
+
+  def no_object_status_conflict
+    if !archived? && has_objects_rented_by_other_active_agreements
+      errors.add(:rent_objects, 'have other unarchived agreements')
     end
   end
 end

@@ -58,4 +58,9 @@ class RentObject < ActiveRecord::Base
         .last
     end
   end
+
+  def yearly_rent_sum(interest, to_date)
+    valuation = relevant_valuation(to_date)
+    valuation ? valuation.value * interest / 100 : nil
+  end
 end

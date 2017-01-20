@@ -59,14 +59,8 @@ class Agreement < ActiveRecord::Base
     end
   end
 
-  def yearly_rent
-    rent_objects.map do |ro|
-      if ro.relevant_valuation(last_reg_date)
-        ro.relevant_valuation(last_reg_date).value * relevant_interest / 100
-      else
-        '-'
-      end
-    end
+  def yearly_rent_sums
+    rent_objects.map { |ro| ro.yearly_rent_sum(relevant_interest, last_reg_date) }
   end
 
   def allowed_objects

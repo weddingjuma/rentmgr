@@ -41,8 +41,8 @@
     %tr
       %td Річна орендна плата
       %td
-        - @agreement.yearly_rent.each do |rent|
-          = "#{rent} грн."
+        - @agreement.yearly_rent_sums.each do |rent|
+          = "#{rent || '-'} грн."
           %br
     %tr
       %td Коментар

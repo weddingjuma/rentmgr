@@ -1,11 +1,11 @@
 class ExtensionsController < ApplicationController
+  before_action :set_extension, only: [:show, :edit, :update, :destroy]
+
   def show
-    @extension = Extension.find(params[:id])
     @agreement = @extension.agreement
   end
 
   def edit
-    @extension = Extension.find(params[:id])
     @agreement = @extension.agreement
   end
 
@@ -27,7 +27,6 @@ class ExtensionsController < ApplicationController
   end
 
   def update
-    @extension = Extension.find(params[:id])
     @agreement = @extension.agreement
 
     if @extension.update(extension_params)
@@ -38,15 +37,16 @@ class ExtensionsController < ApplicationController
   end
 
   def destroy
-    @extension = Extension.find(params[:id])
-    agreement = @extension.agreement
-
     @extension.destroy
 
-    redirect_to agreement_path(agreement)
+    redirect_to agreement_path(@extension.agreement)
   end
 
   private
+
+  def set_extension
+    @extension = Extension.find(params[:id])
+  end
 
   def extension_params
     params

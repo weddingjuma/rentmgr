@@ -1,10 +1,11 @@
 class StreetsController < ApplicationController
+  before_action :set_street, only: [:edit, :update, :destroy]
+
   def index
     @streets = Street.all
   end
 
   def edit
-    @street = Street.find(params[:id])
   end
 
   def new
@@ -22,8 +23,6 @@ class StreetsController < ApplicationController
   end
 
   def update
-    @street = Street.find(params[:id])
-
     if @street.update(street_params)
       redirect_to streets_path
     else
@@ -32,13 +31,16 @@ class StreetsController < ApplicationController
   end
 
   def destroy
-    @street = Street.find(params[:id])
     @street.destroy
 
     redirect_to streets_path
   end
 
   private
+
+  def set_street
+    @street = Street.find(params[:id])
+  end
 
   def street_params
     params.require(:street).permit(:name, :kind)

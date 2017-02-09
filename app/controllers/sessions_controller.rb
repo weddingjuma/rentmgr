@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
+  before_action :set_session, only: [:show, :edit, :update, :destroy]
+
   def index
     @sessions = Session.all
   end
 
   def show
-    @session = Session.find(params[:id])
   end
 
   def edit
-    @session = Session.find(params[:id])
   end
 
   def new
@@ -26,8 +26,6 @@ class SessionsController < ApplicationController
   end
 
   def update
-    @session = Session.find(params[:id])
-
     if @session.update(session_params)
       redirect_to @session
     else
@@ -36,13 +34,16 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @session = Session.find(params[:id])
     @session.destroy
 
     redirect_to sessions_path
   end
 
   private
+
+  def set_session
+    @session = Session.find(params[:id])
+  end
 
   def session_params
     params.require(:session).permit(:s_date, :code)

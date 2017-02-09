@@ -1,14 +1,14 @@
 class RentObjectsController < ApplicationController
+  before_action :set_rent_object, only: [:show, :edit, :update, :destroy]
+
   def index
     @rent_objects = RentObject.all.includes(:street)
   end
 
   def show
-    @rent_object = RentObject.find(params[:id])
   end
 
   def edit
-    @rent_object = RentObject.find(params[:id])
   end
 
   def new
@@ -26,8 +26,6 @@ class RentObjectsController < ApplicationController
   end
 
   def update
-    @rent_object = RentObject.find(params[:id])
-
     if @rent_object.update(rent_object_params)
       redirect_to @rent_object
     else
@@ -36,13 +34,16 @@ class RentObjectsController < ApplicationController
   end
 
   def destroy
-    @rent_object = RentObject.find(params[:id])
     @rent_object.destroy
 
     redirect_to rent_objects_path
   end
 
   private
+
+  def set_rent_object
+    @rent_object = RentObject.find(params[:id])
+  end
 
   def rent_object_params
     params

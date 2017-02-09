@@ -17,7 +17,7 @@
                   label_method: lambda { |ro| "#{ro.code} / #{ro.area} га. / #{ro.function}"}
   = f.association :sessions,
                   label: 'Сесії',
-                  collection: Session.all.order(:s_date => :desc),
+                  collection: Session.all.order(s_date: :desc),
                   label_method: lambda { |s| "#{I18n.l s.s_date} / #{s.code}" }
   = f.input :comment, label: 'Коментар'
   = f.input :archived, label: 'Архів'

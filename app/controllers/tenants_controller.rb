@@ -1,14 +1,14 @@
 class TenantsController < ApplicationController
+  before_action :set_tenant, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tenants = Tenant.all
+    @tenants = Tenant.includes(:settlement, :street)
   end
 
   def show
-    @tenant = Tenant.find(params[:id])
   end
 
   def edit
-    @tenant = Tenant.find(params[:id])
   end
 
   def new
@@ -26,8 +26,6 @@ class TenantsController < ApplicationController
   end
 
   def update
-    @tenant = Tenant.find(params[:id])
-
     if @tenant.update(tenant_params)
       redirect_to @tenant
     else
@@ -36,13 +34,16 @@ class TenantsController < ApplicationController
   end
 
   def destroy
-    @tenant = Tenant.find(params[:id])
     @tenant.destroy
 
     redirect_to tenants_path
   end
 
   private
+
+  def set_tenant
+    @tenant = Tenant.find(params[:id])
+  end
 
   def tenant_params
     params

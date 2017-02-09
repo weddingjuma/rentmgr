@@ -1,4 +1,5 @@
 class Extension < ActiveRecord::Base
+  default_scope { order(:reg_date, :created_at) }
   belongs_to :agreement
   has_and_belongs_to_many :sessions
 

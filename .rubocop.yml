@@ -1,0 +1,9 @@
+Style/IfUnlessModifier:
+  MaxLineLength: 100
+
+Style/Documentation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'

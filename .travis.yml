@@ -1,0 +1,11 @@
+language: ruby
+cache: bundler
+env:
+  - RACK_ENV=test
+  - DATABASE_URL=postgresql://localhost/travis_ci_test
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+script:
+  - bundle exec rspec

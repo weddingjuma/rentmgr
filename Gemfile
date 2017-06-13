@@ -16,6 +16,7 @@ gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'enum_help'
 gem 'ransack', '~> 1.7'
 gem 'rails-i18n', '~> 4.0', '>= 4.0.8'
+gem 'faker', '~> 1.7'
 
 gem 'momentjs-rails', '~> 2.11'
 gem 'bootstrap-daterangepicker-rails', '~> 0.1.2'
@@ -26,7 +27,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara', '~> 2.11'
   gem 'factory_girl_rails', '~> 4.8'
-  gem 'faker', '~> 1.7'
 end
 
 group :development do

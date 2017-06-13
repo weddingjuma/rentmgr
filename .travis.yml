@@ -9,3 +9,8 @@ before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script:
   - bundle exec rspec
+deploy:
+  provider: heroku
+  api_key: $HEROKU_PRODUCTION_KEY
+  app: $HEROKU_APP_NAME
+  run: "rake db:migrate"

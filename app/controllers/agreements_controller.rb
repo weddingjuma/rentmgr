@@ -3,7 +3,7 @@ class AgreementsController < ApplicationController
 
   def index
     @search = Agreement.search(params[:q])
-    @agreements = @search.result
+    @agreements = @search.result.includes(:rent_objects, :tenant, :extensions)
   end
 
   def show
